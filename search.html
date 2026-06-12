@@ -33,7 +33,7 @@
       background: var(--light-pink);
       color: var(--charcoal);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+      
     }
 
     a {
@@ -243,6 +243,29 @@
       }
     }
   </style>
+
+<style id="zcasFinalCleanCss">
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: url("cupcake-cursor.svg") 4 4, auto !important;
+  }
+
+  .floating-item {
+    display: none !important;
+  }
+
+  .btn-order,
+  .btn,
+  .main-btn {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+</style>
+
 </head>
 
 <body>
@@ -262,11 +285,11 @@
       </div>
     </a>
 
-    <a href="cart.html" class="btn-order">Order Now 💬</a>
+    <a href="cart.html" class="btn-order">Order Now</a>
   </nav>
 
   <header class="page-header">
-    <div class="page-badge">🔎 Search ZCAS</div>
+    <div class="page-badge"> Search ZCAS</div>
     <h1 class="page-title">Find Something Sweet</h1>
     <p class="page-subtitle">
       Search cakes, pastries, drinks, wedding cakes, birthday cakes, catering, and policies.
@@ -278,7 +301,7 @@
       <div class="search-box">
         <form class="search-form" id="searchForm">
           <input id="searchInput" placeholder="Search meat pie, cake, wedding, catering..." />
-          <button type="submit">Search 🔎</button>
+          <button type="submit">Search </button>
         </form>
       </div>
 
@@ -287,23 +310,23 @@
   </section>
 
   <footer>
-    <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    <p>&copy; 2026 ZCAS TastyBites. Made with  by PraxiomAI.io</p>
   </footer>
 
   <script>
     const pages = [
-      { title: "Menu", emoji: "🍰", desc: "Browse ZCAS treats and products.", url: "menu/index.html", keywords: "menu cake meat pie samosa spring rolls doughnuts juice egg rolls pastries" },
-      { title: "Order Builder", emoji: "🧾", desc: "Select items and generate a WhatsApp order summary.", url: "cart.html", keywords: "order whatsapp png summary cart checkout" },
-      { title: "Custom Cake Builder", emoji: "🎂", desc: "Build a custom cake request.", url: "custom.html", keywords: "custom cake birthday wedding design flavour frosting" },
-      { title: "Wedding Cakes", emoji: "💍", desc: "Request premium wedding cakes.", url: "weddings.html", keywords: "wedding cake bridal tiers marriage" },
-      { title: "Birthday Cakes", emoji: "🎈", desc: "Create birthday cake requests.", url: "birthdays.html", keywords: "birthday cake age celebrant party" },
-      { title: "Catering", emoji: "🎉", desc: "Bulk orders and event catering.", url: "catering.html", keywords: "catering bulk event party small chops" },
-      { title: "Corporate Orders", emoji: "🏢", desc: "Office and staff treat orders.", url: "corporate.html", keywords: "corporate office staff meeting company" },
-      { title: "Gift Cards", emoji: "🎁", desc: "Sweet gift card requests.", url: "gift-cards.html", keywords: "gift card giftcard present surprise" },
-      { title: "Seasonal Menu", emoji: "🌸", desc: "Limited seasonal treats.", url: "seasonal.html", keywords: "seasonal valentine christmas easter summer" },
-      { title: "FAQ", emoji: "❓", desc: "Answers to common questions.", url: "faq.html", keywords: "faq questions delivery order allergy" },
-      { title: "Allergen Info", emoji: "⚠️", desc: "Allergen and ingredient guidance.", url: "allergens.html", keywords: "allergen allergy gluten egg dairy" },
-      { title: "Contact", emoji: "💬", desc: "Contact ZCAS TastyBites.", url: "contact.html", keywords: "contact whatsapp phone location" }
+      { title: "Menu", emoji: "", desc: "Browse ZCAS treats and products.", url: "menu/index.html", keywords: "menu cake meat pie samosa spring rolls doughnuts juice egg rolls pastries" },
+      { title: "Order Builder", emoji: "", desc: "Select items and generate a WhatsApp order summary.", url: "cart.html", keywords: "order whatsapp png summary cart checkout" },
+      { title: "Custom Cake Builder", emoji: "", desc: "Build a custom cake request.", url: "custom.html", keywords: "custom cake birthday wedding design flavour frosting" },
+      { title: "Wedding Cakes", emoji: "", desc: "Request premium wedding cakes.", url: "weddings.html", keywords: "wedding cake bridal tiers marriage" },
+      { title: "Birthday Cakes", emoji: "", desc: "Create birthday cake requests.", url: "birthdays.html", keywords: "birthday cake age celebrant party" },
+      { title: "Catering", emoji: "", desc: "Bulk orders and event catering.", url: "catering.html", keywords: "catering bulk event party small chops" },
+      { title: "Corporate Orders", emoji: "", desc: "Office and staff treat orders.", url: "corporate.html", keywords: "corporate office staff meeting company" },
+      { title: "Gift Cards", emoji: "", desc: "Sweet gift card requests.", url: "gift-cards.html", keywords: "gift card giftcard present surprise" },
+      { title: "Seasonal Menu", emoji: "", desc: "Limited seasonal treats.", url: "seasonal.html", keywords: "seasonal valentine christmas easter summer" },
+      { title: "FAQ", emoji: "", desc: "Answers to common questions.", url: "faq.html", keywords: "faq questions delivery order allergy" },
+      { title: "Allergen Info", emoji: "", desc: "Allergen and ingredient guidance.", url: "allergens.html", keywords: "allergen allergy gluten egg dairy" },
+      { title: "Contact", emoji: "", desc: "Contact ZCAS TastyBites.", url: "contact.html", keywords: "contact whatsapp phone location" }
     ];
 
     const searchForm = document.getElementById("searchForm");
@@ -327,17 +350,17 @@
           <div class="result-emoji">${page.emoji}</div>
           <h3>${page.title}</h3>
           <p>${page.desc}</p>
-          <a href="${page.url}">Open page →</a>
+          <a href="${page.url}">Open page </a>
         </div>
       `).join("");
 
       if (results.length === 0) {
         resultsGrid.innerHTML = `
           <div class="result-card">
-            <div class="result-emoji">🍰</div>
+            <div class="result-emoji"></div>
             <h3>No results found</h3>
             <p>Try searching for cake, meat pie, catering, birthday, wedding, or WhatsApp order.</p>
-            <a href="cart.html">Build an order →</a>
+            <a href="cart.html">Build an order </a>
           </div>
         `;
       }
@@ -354,6 +377,13 @@
 
     renderResults();
   </script>
+
+
+
+
+
 </body>
 </html>
+
+
 

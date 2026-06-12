@@ -38,7 +38,7 @@
       background-color: var(--light-pink);
       color: var(--charcoal);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+      
     }
 
     a {
@@ -261,7 +261,7 @@
     }
 
     .preview-panel::before {
-      content: "💍 🎂 🌸 ✨ 💕";
+      content: "    ";
       position: absolute;
       top: 18px;
       left: 50%;
@@ -302,7 +302,7 @@
     }
 
     .cake-stage::before {
-      content: "🌸 ✨ 💍 ✨ 🌸";
+      content: "    ";
       position: absolute;
       top: 25px;
       left: 50%;
@@ -712,6 +712,29 @@
       }
     }
   </style>
+
+<style id="zcasFinalCleanCss">
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: url("cupcake-cursor.svg") 4 4, auto !important;
+  }
+
+  .floating-item {
+    display: none !important;
+  }
+
+  .btn-order,
+  .btn,
+  .main-btn {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+</style>
+
 </head>
 
 <body>
@@ -743,18 +766,18 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <a href="cart.html" class="btn-order">Order Now 💬</a>
+    <a href="cart.html" class="btn-order">Order Now</a>
   </nav>
 
   <header class="page-header">
-    <div class="floating-item" style="top: 10%; left: 10%;">💍</div>
-    <div class="floating-item" style="top: 20%; right: 15%;">🎂</div>
-    <div class="floating-item" style="top: 60%; left: 20%;">🌸</div>
-    <div class="floating-item" style="top: 70%; right: 10%;">💕</div>
-    <div class="floating-item" style="top: 40%; left: 80%;">✨</div>
-    <div class="floating-item" style="top: 80%; left: 60%;">🍰</div>
+    
+    
+    
+    
+    
+    
 
-    <div class="page-badge">💍 Wedding Cakes</div>
+    <div class="page-badge"> Wedding Cakes</div>
     <h1 class="page-title">Sweet Cakes for Your Big Day</h1>
     <p class="page-subtitle">
       Build a wedding cake request with tiers, flavours, colours, guest count, and event details. Send everything to ZCAS on WhatsApp.
@@ -771,28 +794,28 @@
 
         <div class="package-grid">
           <div class="package-card active" data-style="Simple Elegant Cake" data-price="65000" data-tiers="1">
-            <div class="package-icon">🤍</div>
+            <div class="package-icon"></div>
             <h3>Simple Elegant</h3>
             <p>Clean single-tier cake for intimate ceremonies and registry events.</p>
             <div class="package-price">From ₦65,000</div>
           </div>
 
           <div class="package-card" data-style="Classic Two-Tier Cake" data-price="120000" data-tiers="2">
-            <div class="package-icon">💍</div>
+            <div class="package-icon"></div>
             <h3>Classic Two-Tier</h3>
             <p>Beautiful two-tier cake for traditional wedding receptions.</p>
             <div class="package-price">From ₦120,000</div>
           </div>
 
           <div class="package-card" data-style="Premium Three-Tier Cake" data-price="200000" data-tiers="3">
-            <div class="package-icon">👑</div>
+            <div class="package-icon"></div>
             <h3>Premium Three-Tier</h3>
             <p>Statement cake with floral details and premium finishing.</p>
             <div class="package-price">From ₦200,000</div>
           </div>
 
           <div class="package-card" data-style="Luxury Custom Wedding Cake" data-price="300000" data-tiers="4">
-            <div class="package-icon">✨</div>
+            <div class="package-icon"></div>
             <h3>Luxury Custom</h3>
             <p>Fully custom design for large events and luxury setups.</p>
             <div class="package-price">From ₦300,000</div>
@@ -871,10 +894,10 @@
         <div class="cake-stage" id="cakeStage">
           <div>
             <div class="wedding-cake" id="weddingCake">
-              <div class="cake-topper" id="cakeTopper">💍</div>
-              <div class="cake-tier tier-3" id="tier3"><div class="flower-line">🌸 🌸 🌸</div></div>
-              <div class="cake-tier tier-2" id="tier2"><div class="flower-line">✨ 🌸 ✨</div></div>
-              <div class="cake-tier tier-1" id="tier1"><div class="flower-line">🌸 ✨ 🌸 ✨ 🌸</div></div>
+              <div class="cake-topper" id="cakeTopper"></div>
+              <div class="cake-tier tier-3" id="tier3"><div class="flower-line">  </div></div>
+              <div class="cake-tier tier-2" id="tier2"><div class="flower-line">  </div></div>
+              <div class="cake-tier tier-1" id="tier1"><div class="flower-line">    </div></div>
             </div>
             <div class="cake-stand"></div>
           </div>
@@ -900,9 +923,9 @@
         </div>
 
         <div class="button-stack">
-          <button class="main-btn pink-btn" id="copySummaryBtn">Copy Request 🧾</button>
-          <a class="main-btn green-btn" id="whatsappBtn" href="#">Send to WhatsApp 💬</a>
-          <a class="main-btn outline-btn" href="custom.html">Open Cake Builder 🎂</a>
+          <button class="main-btn pink-btn" id="copySummaryBtn">Copy Request </button>
+          <a class="main-btn green-btn" id="whatsappBtn" href="#">Send to WhatsApp </a>
+          <a class="main-btn outline-btn" href="custom.html">Open Cake Builder </a>
         </div>
       </aside>
     </div>
@@ -911,19 +934,19 @@
   <section class="gallery-section">
     <div class="gallery-grid">
       <div class="gallery-card">
-        <div class="gallery-icon">🌸</div>
+        <div class="gallery-icon"></div>
         <h3>Floral Details</h3>
         <p>Soft floral decorations for romantic wedding cake styles.</p>
       </div>
 
       <div class="gallery-card">
-        <div class="gallery-icon">💍</div>
+        <div class="gallery-icon"></div>
         <h3>Couple Topper</h3>
         <p>Add initials, names, wedding date, or custom topper ideas.</p>
       </div>
 
       <div class="gallery-card">
-        <div class="gallery-icon">✨</div>
+        <div class="gallery-icon"></div>
         <h3>Premium Finish</h3>
         <p>Smooth frosting, cute colours, and premium presentation.</p>
       </div>
@@ -942,15 +965,15 @@
         <h3>Quick Links</h3>
         <p><a href="index.html">Home</a></p>
         <p><a href="menu/index.html">Menu</a></p>
-        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="custom.html">Custom Order</a></p>
         <p><a href="story.html">Our Story</a></p>
       </div>
 
       <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>📍 Abuja, Nigeria</p>
-        <p>📞 08148124675</p>
-        <p>💬 WhatsApp orders available</p>
+        <p> Abuja, Nigeria</p>
+        <p> 08148124675</p>
+        <p> WhatsApp orders available</p>
       </div>
 
       <div class="footer-section">
@@ -962,7 +985,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+      <p>&copy; 2026 ZCAS TastyBites. Made with  by PraxiomAI.io</p>
     </div>
   </footer>
 
@@ -1040,11 +1063,11 @@
       tier3.style.display = selectedStyle.tiers >= 3 ? "block" : "none";
 
       if (selectedStyle.tiers >= 4) {
-        cakeTopper.textContent = "👑";
+        cakeTopper.textContent = "";
       } else if (selectedStyle.tiers >= 3) {
-        cakeTopper.textContent = "✨";
+        cakeTopper.textContent = "";
       } else {
-        cakeTopper.textContent = "💍";
+        cakeTopper.textContent = "";
       }
 
       const colour = themeColor.value;
@@ -1130,11 +1153,11 @@ Please confirm final pricing, design availability, and delivery.`;
 
       try {
         await navigator.clipboard.writeText(text);
-        copySummaryBtn.textContent = "Copied! ✅";
+        copySummaryBtn.textContent = "Copied! ";
         createConfetti();
 
         setTimeout(() => {
-          copySummaryBtn.textContent = "Copy Request 🧾";
+          copySummaryBtn.textContent = "Copy Request ";
         }, 1500);
       } catch (error) {
         alert(text);
@@ -1164,13 +1187,20 @@ Please confirm final pricing, design availability, and delivery.`;
       if (logoClicks === 5) {
         e.preventDefault();
         createConfetti();
-        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        alert(" SURPRISE! Use code SWEET5 for 5% off your first order! ");
         logoClicks = 0;
       }
     });
 
     updateSummary();
   </script>
+
+
+
+
+
 </body>
 </html>
+
+
 

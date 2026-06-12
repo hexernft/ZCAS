@@ -34,7 +34,7 @@
         linear-gradient(135deg, var(--light-pink), var(--cream-white));
       color: var(--charcoal);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+      
     }
 
     a {
@@ -96,7 +96,7 @@
     }
 
     .card::before {
-      content: "🧁 🍩 🎂 🥧 ✨";
+      content: "    ";
       position: absolute;
       top: 22px;
       left: 50%;
@@ -194,28 +194,51 @@
       }
     }
   </style>
+
+<style id="zcasFinalCleanCss">
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: url("cupcake-cursor.svg") 4 4, auto !important;
+  }
+
+  .floating-item {
+    display: none !important;
+  }
+
+  .btn-order,
+  .btn,
+  .main-btn {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+</style>
+
 </head>
 
 <body>
   <main class="page">
-    <div class="floating-item" style="top: 10%; left: 10%;">🧁</div>
-    <div class="floating-item" style="top: 20%; right: 15%;">🍩</div>
-    <div class="floating-item" style="top: 60%; left: 20%;">🥧</div>
-    <div class="floating-item" style="top: 70%; right: 10%;">🎂</div>
-    <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+    
+    
+    
+    
+    
 
     <section class="card">
-      <div class="big-emoji">🍰</div>
+      <div class="big-emoji"></div>
       <h1>404</h1>
       <h2>Oops, this treat is missing!</h2>
       <p>
-        The page you are looking for may have moved, melted, or been eaten. Let’s get you back to something sweet.
+        The page you are looking for may have moved, melted, or been eaten. Lets get you back to something sweet.
       </p>
 
       <div class="actions">
-        <a class="btn pink" href="index.html">Back Home 🏠</a>
-        <a class="btn outline" href="menu/index.html">View Menu 🍰</a>
-        <a class="btn outline" href="cart.html">Build Order 💬</a>
+        <a class="btn pink" href="index.html">Back Home </a>
+        <a class="btn outline" href="menu/index.html">View Menu </a>
+        <a class="btn outline" href="cart.html">Build Order </a>
       </div>
     </section>
   </main>
@@ -234,6 +257,13 @@
       }
     });
   </script>
+
+
+
+
+
 </body>
 </html>
+
+
 

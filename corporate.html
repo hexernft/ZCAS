@@ -38,7 +38,7 @@
       background-color: var(--light-pink);
       color: var(--charcoal);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+      
     }
 
     a {
@@ -260,7 +260,7 @@
     }
 
     .summary-panel::before {
-      content: "🏢 🧁 ☕ 🎁 ✨";
+      content: "    ";
       position: absolute;
       top: 18px;
       left: 50%;
@@ -660,6 +660,29 @@
       }
     }
   </style>
+
+<style id="zcasFinalCleanCss">
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: url("cupcake-cursor.svg") 4 4, auto !important;
+  }
+
+  .floating-item {
+    display: none !important;
+  }
+
+  .btn-order,
+  .btn,
+  .main-btn {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+</style>
+
 </head>
 
 <body>
@@ -691,18 +714,18 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <a href="cart.html" class="btn-order">Order Now 💬</a>
+    <a href="cart.html" class="btn-order">Order Now</a>
   </nav>
 
   <header class="page-header">
-    <div class="floating-item" style="top: 10%; left: 10%;">🏢</div>
-    <div class="floating-item" style="top: 20%; right: 15%;">☕</div>
-    <div class="floating-item" style="top: 60%; left: 20%;">🧁</div>
-    <div class="floating-item" style="top: 70%; right: 10%;">🎁</div>
-    <div class="floating-item" style="top: 40%; left: 80%;">🥧</div>
-    <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+    
+    
+    
+    
+    
+    
 
-    <div class="page-badge">🏢 Corporate Orders</div>
+    <div class="page-badge"> Corporate Orders</div>
     <h1 class="page-title">Sweet Treats for Teams</h1>
     <p class="page-subtitle">
       Build office pastry boxes, meeting snacks, staff appreciation treats, launch packs, and corporate celebration orders.
@@ -719,28 +742,28 @@
 
         <div class="package-grid">
           <div class="package-card active" data-package="Office Snack Box" data-price="1800">
-            <div class="package-icon">☕</div>
+            <div class="package-icon"></div>
             <h3>Office Snack Box</h3>
             <p>Light pastries and snacks for office breaks and meetings.</p>
             <div class="package-price">From ₦1,800 per person</div>
           </div>
 
           <div class="package-card" data-package="Meeting Treat Pack" data-price="2800">
-            <div class="package-icon">🥧</div>
+            <div class="package-icon"></div>
             <h3>Meeting Treat Pack</h3>
             <p>Meat pies, egg rolls, small chops, and doughnuts.</p>
             <div class="package-price">From ₦2,800 per person</div>
           </div>
 
           <div class="package-card" data-package="Staff Appreciation Box" data-price="4500">
-            <div class="package-icon">🎁</div>
+            <div class="package-icon"></div>
             <h3>Staff Appreciation</h3>
             <p>Individually packed treat boxes for staff and clients.</p>
             <div class="package-price">From ₦4,500 per person</div>
           </div>
 
           <div class="package-card" data-package="Premium Corporate Spread" data-price="6500">
-            <div class="package-icon">✨</div>
+            <div class="package-icon"></div>
             <h3>Premium Spread</h3>
             <p>Full office event mix with pastries, cakes, and drinks.</p>
             <div class="package-price">From ₦6,500 per person</div>
@@ -755,7 +778,7 @@
             </div>
 
             <div class="staff-buttons">
-              <button class="staff-btn" type="button" id="decreasePeople">−</button>
+              <button class="staff-btn" type="button" id="decreasePeople"></button>
               <div class="staff-count" id="peopleCountDisplay">20</div>
               <button class="staff-btn" type="button" id="increasePeople">+</button>
             </div>
@@ -847,9 +870,9 @@
         </div>
 
         <div class="button-stack">
-          <button class="main-btn pink-btn" id="copySummaryBtn">Copy Summary 🧾</button>
-          <a class="main-btn green-btn" id="whatsappBtn" href="#">Send to WhatsApp 💬</a>
-          <a class="main-btn outline-btn" href="catering.html">View Catering 🎉</a>
+          <button class="main-btn pink-btn" id="copySummaryBtn">Copy Summary </button>
+          <a class="main-btn green-btn" id="whatsappBtn" href="#">Send to WhatsApp </a>
+          <a class="main-btn outline-btn" href="catering.html">View Catering </a>
         </div>
       </aside>
     </div>
@@ -858,19 +881,19 @@
   <section class="benefits-section">
     <div class="benefits-grid">
       <div class="benefit-card">
-        <div class="benefit-icon">🎁</div>
+        <div class="benefit-icon"></div>
         <h3>Branded Boxes</h3>
         <p>Request special packaging for staff, clients, or company celebrations.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-icon">☕</div>
+        <div class="benefit-icon"></div>
         <h3>Meeting Ready</h3>
         <p>Perfect for trainings, meetings, launches, and small corporate events.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-icon">💬</div>
+        <div class="benefit-icon"></div>
         <h3>WhatsApp Confirmation</h3>
         <p>Final order details, delivery, and availability are confirmed directly on WhatsApp.</p>
       </div>
@@ -889,15 +912,15 @@
         <h3>Quick Links</h3>
         <p><a href="index.html">Home</a></p>
         <p><a href="menu/index.html">Menu</a></p>
-        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="custom.html">Custom Order</a></p>
         <p><a href="story.html">Our Story</a></p>
       </div>
 
       <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>📍 Abuja, Nigeria</p>
-        <p>📞 08148124675</p>
-        <p>💬 WhatsApp orders available</p>
+        <p> Abuja, Nigeria</p>
+        <p> 08148124675</p>
+        <p> WhatsApp orders available</p>
       </div>
 
       <div class="footer-section">
@@ -909,7 +932,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+      <p>&copy; 2026 ZCAS TastyBites. Made with  by PraxiomAI.io</p>
     </div>
   </footer>
 
@@ -1071,11 +1094,11 @@ Please confirm availability, packaging, final pricing, and delivery.`
 
       try {
         await navigator.clipboard.writeText(summary.text);
-        copySummaryBtn.textContent = "Copied! ✅";
+        copySummaryBtn.textContent = "Copied! ";
         createConfetti();
 
         setTimeout(() => {
-          copySummaryBtn.textContent = "Copy Summary 🧾";
+          copySummaryBtn.textContent = "Copy Summary ";
         }, 1500);
       } catch (error) {
         alert(summary.text);
@@ -1093,13 +1116,20 @@ Please confirm availability, packaging, final pricing, and delivery.`
       if (logoClicks === 5) {
         e.preventDefault();
         createConfetti();
-        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        alert(" SURPRISE! Use code SWEET5 for 5% off your first order! ");
         logoClicks = 0;
       }
     });
 
     updateSummary();
   </script>
+
+
+
+
+
 </body>
 </html>
+
+
 

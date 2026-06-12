@@ -35,7 +35,7 @@
       background-color: var(--light-pink);
       color: var(--charcoal);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+      
     }
 
     a {
@@ -263,7 +263,7 @@
     }
 
     .success-card::before {
-      content: "🧁 🍩 🎂 🥧 ✨";
+      content: "    ";
       position: absolute;
       top: 22px;
       left: 50%;
@@ -540,7 +540,7 @@
     }
 
     .share-card::before {
-      content: "🎉 🎂 💕 🍰 ✨";
+      content: "    ";
       position: absolute;
       top: 18px;
       left: 50%;
@@ -693,6 +693,29 @@
       }
     }
   </style>
+
+<style id="zcasFinalCleanCss">
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: url("cupcake-cursor.svg") 4 4, auto !important;
+  }
+
+  .floating-item {
+    display: none !important;
+  }
+
+  .btn-order,
+  .btn,
+  .main-btn {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+</style>
+
 </head>
 
 <body>
@@ -729,30 +752,30 @@
         <i class="fab fa-whatsapp"></i>
         
       </a>
-      <a href="https://wa.me/2348148124675" class="btn-order">Order Now 💫</a>
+      <a href="https://wa.me/2348148124675" class="btn-order">Order Now</a>
     </div>
   </nav>
 
   <main class="confirmation-hero">
     <div class="floating-pastries">
-      <div class="floating-item" style="top: 10%; left: 10%;">✅</div>
-      <div class="floating-item" style="top: 20%; right: 15%;">🧁</div>
-      <div class="floating-item" style="top: 60%; left: 20%;">🎉</div>
-      <div class="floating-item" style="top: 70%; right: 10%;">🥧</div>
-      <div class="floating-item" style="top: 40%; left: 80%;">🍩</div>
-      <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+      
+      
+      
+      
+      
+      
     </div>
 
     <section class="confirmation-layout">
       <div class="success-card">
-        <div class="success-icon-wrap">✅</div>
+        <div class="success-icon-wrap"></div>
 
-        <div class="page-badge">🎉 Order Request Received</div>
+        <div class="page-badge"> Order Request Received</div>
 
         <h1 class="success-title">Thank You, Sweet Friend!</h1>
 
         <p class="success-text">
-          Your ZCAS TastyBites order request has been prepared. We’ll confirm availability, delivery, and payment details through WhatsApp.
+          Your ZCAS TastyBites order request has been prepared. Well confirm availability, delivery, and payment details through WhatsApp.
         </p>
 
         <div class="order-number-box">
@@ -761,9 +784,9 @@
         </div>
 
         <div class="confirmation-actions">
-          <a class="action-btn action-green" id="whatsappFollowup" href="#">Follow Up on WhatsApp 💬</a>
-          <button class="action-btn action-primary" onclick="printReceipt()">Print Receipt 🧾</button>
-          <a class="action-btn action-outline" href="menu/index.html">Order More Treats 🍰</a>
+          <a class="action-btn action-green" id="whatsappFollowup" href="#">Follow Up on WhatsApp </a>
+          <button class="action-btn action-primary" onclick="printReceipt()">Print Receipt </button>
+          <a class="action-btn action-outline" href="menu/index.html">Order More Treats </a>
         </div>
       </div>
 
@@ -772,7 +795,7 @@
           <h2 class="receipt-title">Order Receipt</h2>
 
           <div class="receipt-item">
-            <div class="receipt-emoji">🥧</div>
+            <div class="receipt-emoji"></div>
             <div>
               <strong>Meat Pie</strong><br>
               Qty: 2
@@ -780,7 +803,7 @@
           </div>
 
           <div class="receipt-item">
-            <div class="receipt-emoji">🧃</div>
+            <div class="receipt-emoji"></div>
             <div>
               <strong>Fruit Juice</strong><br>
               Qty: 1
@@ -788,7 +811,7 @@
           </div>
 
           <div class="receipt-item">
-            <div class="receipt-emoji">🍩</div>
+            <div class="receipt-emoji"></div>
             <div>
               <strong>Doughnuts</strong><br>
               Qty: 3
@@ -857,9 +880,9 @@
       </p>
 
       <div class="share-actions">
-        <a class="action-btn action-primary" href="custom.html">Build Custom Cake 🎂</a>
-        <a class="action-btn action-outline" href="story.html">Read Our Story 📖</a>
-        <a class="action-btn action-green" href="https://wa.me/2348148124675">Chat With ZCAS 💬</a>
+        <a class="action-btn action-primary" href="custom.html">Build Custom Cake </a>
+        <a class="action-btn action-outline" href="story.html">Read Our Story </a>
+        <a class="action-btn action-green" href="https://wa.me/2348148124675">Chat With ZCAS </a>
       </div>
     </div>
   </section>
@@ -876,15 +899,15 @@
         <h3>Quick Links</h3>
         <p><a href="index.html">Home</a></p>
         <p><a href="menu/index.html">Menu</a></p>
-        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="custom.html">Custom Order</a></p>
         <p><a href="story.html">Our Story</a></p>
       </div>
 
       <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>📍 Abuja, Nigeria</p>
-        <p>📞 08148124675</p>
-        <p>💬 WhatsApp orders available</p>
+        <p> Abuja, Nigeria</p>
+        <p> 08148124675</p>
+        <p> WhatsApp orders available</p>
       </div>
 
       <div class="footer-section">
@@ -896,7 +919,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+      <p>&copy; 2026 ZCAS TastyBites. Made with  by PraxiomAI.io</p>
     </div>
   </footer>
 
@@ -979,7 +1002,7 @@
       if (logoClicks === 5) {
         e.preventDefault();
         createConfetti();
-        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        alert(" SURPRISE! Use code SWEET5 for 5% off your first order! ");
         logoClicks = 0;
       }
     });
@@ -1035,7 +1058,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".btn-add-cart, .add-suggestion").forEach(function (button) {
-        button.textContent = "Order on WhatsApp 💬";
+        button.textContent = "Order on WhatsApp ";
       });
 
       document.querySelectorAll(".cart-icon").forEach(function (link) {
@@ -1051,7 +1074,14 @@
     });
   })();
 </script>
+
+
+
+
+
 </body>
 </html>
+
+
 
 

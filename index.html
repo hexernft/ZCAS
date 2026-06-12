@@ -37,7 +37,7 @@
       background-color: var(--light-pink);
       color: var(--charcoal);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">ðŸ§</text></svg>'), auto;
+      
     }
 
     a {
@@ -378,7 +378,7 @@
     }
 
     .wheel::before {
-      content: 'ðŸŽ¡';
+      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
@@ -749,6 +749,29 @@
       }
     }
   </style>
+
+<style id="zcasFinalCleanCss">
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: url("cupcake-cursor.svg") 4 4, auto !important;
+  }
+
+  .floating-item {
+    display: none !important;
+  }
+
+  .btn-order,
+  .btn,
+  .main-btn {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+</style>
+
 </head>
 <body>
   <nav>
@@ -783,27 +806,27 @@
         <i class="fab fa-whatsapp"></i>
         
       </a>
-      <a href="https://wa.me/2348148124675" class="btn-order">Order Now ðŸ’«</a>
+      <a href="https://wa.me/2348148124675" class="btn-order">Order Now</a>
     </div>
   </nav>
 
   <section class="hero" id="home">
     <div class="floating-pastries">
-      <div class="floating-item" style="top: 10%; left: 10%;">ðŸ§</div>
-      <div class="floating-item" style="top: 20%; right: 15%;">ðŸ©</div>
-      <div class="floating-item" style="top: 60%; left: 20%;">ðŸ°</div>
-      <div class="floating-item" style="top: 70%; right: 10%;">ðŸ¥</div>
-      <div class="floating-item" style="top: 40%; left: 80%;">ðŸª</div>
-      <div class="floating-item" style="top: 80%; left: 60%;">ðŸ§ƒ</div>
+      
+      
+      
+      
+      
+      
     </div>
 
     <div class="hero-content">
-      <div class="hero-badge">âœ¨ Homemade with Love in Abuja</div>
+      <div class="hero-badge"> Homemade with Love in Abuja</div>
       <h1 class="hero-title">Where Every Bite Tells a Story</h1>
       <p class="hero-subtitle">Artisan pastries, custom cakes, sweet snacks, and refreshing drinks crafted just for you.</p>
       <div class="hero-cta">
-        <a href="menu/index.html" class="btn-primary">Explore Menu ðŸŽ¯</a>
-        <a href="custom.html" class="btn-secondary">Custom Order ðŸŽ‚</a>
+        <a href="menu/index.html" class="btn-primary">Explore Menu</a>
+        <a href="custom.html" class="btn-secondary">Custom Order</a>
       </div>
     </div>
 
@@ -813,7 +836,7 @@
   </section>
 
   <section class="flavor-wheel-section">
-    <h2 class="section-title">ðŸŽ¡ Spin the Flavor Wheel</h2>
+    <h2 class="section-title"> Spin the Flavor Wheel</h2>
     <p class="section-subtitle">Can't decide? Let fate choose your treat!</p>
 
     <div class="wheel-container">
@@ -821,12 +844,12 @@
       <div class="wheel" id="flavorWheel"></div>
     </div>
 
-    <button class="spin-btn" onclick="spinWheel()">SPIN ME! ðŸŽ°</button>
+    <button class="spin-btn" onclick="spinWheel()">SPIN ME!</button>
     <div class="wheel-result" id="wheelResult"></div>
   </section>
 
   <section class="featured-section" id="menu">
-    <h2 class="section-title" style="text-align: center;">â­ Featured Treats</h2>
+    <h2 class="section-title" style="text-align: center;"> Featured Treats</h2>
     <p class="section-subtitle" style="text-align: center;">Handcrafted with love, ready to delight</p>
 
     <div class="products-grid">
@@ -834,12 +857,12 @@
         <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcf8?w=800" alt="Cupcake" class="product-image">
         <div class="product-overlay">
           <h3 style="margin-bottom: 1rem;">Pink Cupcake Box</h3>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
         <div class="product-info">
           <h3 class="product-name">Pink Cupcake Box</h3>
           <p class="product-price">Request price</p>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
       </div>
 
@@ -847,12 +870,12 @@
         <img src="https://images.unsplash.com/photo-1551024601-bec0273e8a9e?w=800" alt="Donut" class="product-image">
         <div class="product-overlay">
           <h3 style="margin-bottom: 1rem;">Classic Doughnuts</h3>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
         <div class="product-info">
           <h3 class="product-name">Classic Doughnuts</h3>
-          <p class="product-price">â‚¦800</p>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <p class="product-price">800</p>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
       </div>
 
@@ -860,12 +883,12 @@
         <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" alt="Cake" class="product-image">
         <div class="product-overlay">
           <h3 style="margin-bottom: 1rem;">Custom Celebration Cake</h3>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
         <div class="product-info">
           <h3 class="product-name">Custom Celebration Cake</h3>
           <p class="product-price">Request price</p>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
       </div>
 
@@ -873,19 +896,19 @@
         <img src="https://images.unsplash.com/photo-1509365465985-25d11f150f52?w=800" alt="Pastry" class="product-image">
         <div class="product-overlay">
           <h3 style="margin-bottom: 1rem;">Meat Pie</h3>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
         <div class="product-info">
           <h3 class="product-name">Meat Pie</h3>
-          <p class="product-price">â‚¦1,500</p>
-          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp ðŸ›’</button>
+          <p class="product-price">1,500</p>
+          <button class="btn-add-cart" onclick="addToCart(this)">Order on WhatsApp </button>
         </div>
       </div>
     </div>
   </section>
 
   <section class="testimonials-section">
-    <h2 class="section-title">ðŸ’• Sweet Words from Customers</h2>
+    <h2 class="section-title"> Sweet Words from Customers</h2>
     <p class="section-subtitle">Don't just take our word for it!</p>
 
     <div class="testimonials-grid">
@@ -895,7 +918,7 @@
           <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="Customer" class="author-avatar">
           <div class="author-info">
             <div class="author-name">Sarah M.</div>
-            <div class="author-stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <div class="author-stars"></div>
           </div>
         </div>
       </div>
@@ -906,7 +929,7 @@
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Customer" class="author-avatar">
           <div class="author-info">
             <div class="author-name">Michael A.</div>
-            <div class="author-stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <div class="author-stars"></div>
           </div>
         </div>
       </div>
@@ -917,7 +940,7 @@
           <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" alt="Customer" class="author-avatar">
           <div class="author-info">
             <div class="author-name">Emily R.</div>
-            <div class="author-stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <div class="author-stars"></div>
           </div>
         </div>
       </div>
@@ -925,12 +948,12 @@
   </section>
 
   <section class="newsletter-section">
-    <h2 class="newsletter-title">ðŸŽ Get Sweet Deals!</h2>
+    <h2 class="newsletter-title"> Get Sweet Deals!</h2>
     <p class="newsletter-subtitle">Subscribe for exclusive offers, new flavours, and birthday surprises</p>
 
     <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
       <input type="email" placeholder="Enter your email" class="newsletter-input" required>
-      <button type="submit" class="newsletter-btn">Subscribe âœ¨</button>
+      <button type="submit" class="newsletter-btn">Subscribe </button>
     </form>
   </section>
 
@@ -952,15 +975,15 @@
         <h3>Quick Links</h3>
         <p><a href="index.html">Home</a></p>
         <p><a href="menu/index.html">Menu</a></p>
-        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="custom.html">Custom Order</a></p>
         <p><a href="story.html">Our Story</a></p>
       </div>
 
       <div class="footer-section">
         <h3>Contact Us</h3>
-        <p>ðŸ“ Abuja, Nigeria</p>
-        <p>ðŸ“ž 08148124675</p>
-        <p>ðŸ’¬ WhatsApp orders available</p>
+        <p> Abuja, Nigeria</p>
+        <p> 08148124675</p>
+        <p> WhatsApp orders available</p>
       </div>
 
       <div class="footer-section">
@@ -972,7 +995,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 ZCAS TastyBites. Made with ðŸ’• by PraxiomAI.io</p>
+      <p>&copy; 2026 ZCAS TastyBites. Made with  by PraxiomAI.io</p>
     </div>
   </footer>
 
@@ -1001,11 +1024,11 @@
 
     let currentRotation = 0;
     const flavors = [
-      { name: 'Vanilla Bean', emoji: 'ðŸ§' },
-      { name: 'Chocolate Fudge', emoji: 'ðŸ«' },
-      { name: 'Strawberry Dream', emoji: 'ðŸ“' },
-      { name: 'Fresh Fruit Juice', emoji: 'ðŸ§ƒ' },
-      { name: 'Golden Meat Pie', emoji: 'ðŸ¥§' }
+      { name: 'Vanilla Bean', emoji: '' },
+      { name: 'Chocolate Fudge', emoji: '' },
+      { name: 'Strawberry Dream', emoji: '' },
+      { name: 'Fresh Fruit Juice', emoji: '' },
+      { name: 'Golden Meat Pie', emoji: '' }
     ];
 
     function spinWheel() {
@@ -1059,7 +1082,7 @@
       document.querySelector('.cart-badge').textContent = cartCount;
 
       const originalText = button.textContent;
-      button.textContent = 'Added! âœ“';
+      button.textContent = 'Added! ';
       button.style.background = '#6BCB77';
       button.style.color = 'white';
 
@@ -1077,13 +1100,13 @@
       const input = e.target.querySelector('input');
       const btn = e.target.querySelector('button');
 
-      btn.textContent = 'Subscribed! ðŸŽ‰';
+      btn.textContent = 'Subscribed! ';
       btn.style.background = '#6BCB77';
       input.value = '';
       createConfetti();
 
       setTimeout(() => {
-        btn.textContent = 'Subscribe âœ¨';
+        btn.textContent = 'Subscribe ';
         btn.style.background = '';
       }, 3000);
     }
@@ -1095,7 +1118,7 @@
       if (logoClicks === 5) {
         e.preventDefault();
         createConfetti();
-        alert('ðŸŽ‰ SURPRISE! Use code SWEET5 for 5% off your first order! ðŸŽ‰');
+        alert(' SURPRISE! Use code SWEET5 for 5% off your first order! ');
         logoClicks = 0;
       }
     });
@@ -1168,7 +1191,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".btn-add-cart, .add-suggestion").forEach(function (button) {
-        button.textContent = "Order on WhatsApp 💬";
+        button.textContent = "Order on WhatsApp ";
       });
 
       document.querySelectorAll(".cart-icon").forEach(function (link) {
@@ -1184,7 +1207,20 @@
     });
   })();
 </script>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
+
+
+
 
 
