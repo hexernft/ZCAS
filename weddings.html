@@ -735,6 +735,52 @@
   }
 </style>
 
+
+<style id="zcasProductImageFix">
+  /* Product image sizing fix */
+  .product-card img,
+  .menu-card img,
+  .treat-card img,
+  .item-card img,
+  .card img {
+    width: 100% !important;
+    height: 230px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .product-image,
+  .menu-image,
+  .treat-image,
+  .card-image {
+    height: 230px !important;
+    overflow: hidden !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .product-card,
+  .menu-card,
+  .treat-card {
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 700px) {
+    .product-card img,
+    .menu-card img,
+    .treat-card img,
+    .item-card img,
+    .card img,
+    .product-image,
+    .menu-image,
+    .treat-image,
+    .card-image {
+      height: 190px !important;
+    }
+  }
+</style>
+
 </head>
 
 <body>
@@ -1201,6 +1247,8 @@ Please confirm final pricing, design availability, and delivery.`;
 
 </body>
 </html>
+
+
 
 
 

@@ -914,6 +914,151 @@
   }
 </style>
 
+
+<style id="zcasProductImageFix">
+  /* Product image sizing fix */
+  .product-card img,
+  .menu-card img,
+  .treat-card img,
+  .item-card img,
+  .card img {
+    width: 100% !important;
+    height: 230px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .product-image,
+  .menu-image,
+  .treat-image,
+  .card-image {
+    height: 230px !important;
+    overflow: hidden !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .product-card,
+  .menu-card,
+  .treat-card {
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 700px) {
+    .product-card img,
+    .menu-card img,
+    .treat-card img,
+    .item-card img,
+    .card img,
+    .product-image,
+    .menu-image,
+    .treat-image,
+    .card-image {
+      height: 190px !important;
+    }
+  }
+</style>
+
+
+<style id="zcasMenuFinalCardFix">
+  /* Final menu card cleanup */
+
+  .product-card,
+  .menu-card,
+  .treat-card,
+  .item-card {
+    overflow: hidden !important;
+  }
+
+  .product-image,
+  .menu-image,
+  .treat-image,
+  .card-image {
+    position: relative !important;
+    height: 230px !important;
+    overflow: hidden !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .product-card img,
+  .menu-card img,
+  .treat-card img,
+  .item-card img,
+  .card img {
+    width: 100% !important;
+    height: 230px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+  }
+
+  /* Hide old duplicated text/buttons inside image area */
+  .product-image h1,
+  .product-image h2,
+  .product-image h3,
+  .product-image p,
+  .product-image a,
+  .product-image button,
+  .product-image span,
+  .menu-image h1,
+  .menu-image h2,
+  .menu-image h3,
+  .menu-image p,
+  .menu-image a,
+  .menu-image button,
+  .menu-image span,
+  .treat-image h1,
+  .treat-image h2,
+  .treat-image h3,
+  .treat-image p,
+  .treat-image a,
+  .treat-image button,
+  .treat-image span,
+  .card-image h1,
+  .card-image h2,
+  .card-image h3,
+  .card-image p,
+  .card-image a,
+  .card-image button,
+  .card-image span {
+    display: none !important;
+  }
+
+  @media (max-width: 700px) {
+    .product-image,
+    .menu-image,
+    .treat-image,
+    .card-image,
+    .product-card img,
+    .menu-card img,
+    .treat-card img,
+    .item-card img,
+    .card img {
+      height: 190px !important;
+    }
+  }
+</style>
+
+<script id="zcasMenuFinalPriceFix">
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("h1, h2, h3, p, span, div").forEach(function (el) {
+      if (el.children.length) return;
+
+      var text = (el.textContent || "").trim();
+
+      if (text === "800") el.textContent = "N800";
+      if (text === "1,500") el.textContent = "N1,500";
+      if (text === "1500") el.textContent = "N1,500";
+      if (text === "1,000") el.textContent = "N1,000";
+      if (text === "1000") el.textContent = "N1,000";
+      if (text === "350") el.textContent = "N350";
+      if (text === "2,000") el.textContent = "N2,000";
+      if (text === "2000") el.textContent = "N2,000";
+    });
+  });
+</script>
+
 </head>
 
 <body>
@@ -1578,6 +1723,10 @@
 
 </body>
 </html>
+
+
+
+
 
 
 
