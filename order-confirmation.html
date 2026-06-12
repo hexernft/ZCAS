@@ -1,0 +1,1057 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Order Confirmation | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a.active {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--bubblegum-pink);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--bubblegum-pink);
+      color: white;
+      font-size: 0.7rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+      border-color: white;
+    }
+
+    .confirmation-hero {
+      min-height: 100vh;
+      padding: 150px 5% 80px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 107, 157, 0.22), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 217, 61, 0.25), transparent 25%),
+        linear-gradient(135deg, var(--light-pink) 0%, var(--cream-white) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-pastries {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.13;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .confirmation-layout {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: 2rem;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .success-card,
+    .receipt-card,
+    .timeline-card {
+      background: rgba(255,255,255,0.94);
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 15px 45px rgba(255,107,157,0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .success-card {
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .success-card::before {
+      content: "🧁 🍩 🎂 🥧 ✨";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .success-icon-wrap {
+      width: 150px;
+      height: 150px;
+      margin: 1rem auto 1.5rem;
+      border-radius: 42px;
+      background: linear-gradient(135deg, var(--mint-green), var(--golden-yellow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5.5rem;
+      box-shadow: 0 16px 40px rgba(107,203,119,0.28);
+      animation: successPop 1.2s ease-out infinite alternate;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes successPop {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-8px) scale(1.04); }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .success-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4rem;
+      color: var(--chocolate-brown);
+      line-height: 1.2;
+      text-shadow: 3px 3px 0px var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    .success-text {
+      max-width: 680px;
+      margin: 1rem auto 0;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      line-height: 1.8;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+    }
+
+    .order-number-box {
+      margin: 2rem auto 0;
+      max-width: 480px;
+      background: var(--light-pink);
+      border-radius: 24px;
+      padding: 1.4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .order-number-label {
+      font-weight: 700;
+      color: var(--bubblegum-pink);
+      margin-bottom: 0.4rem;
+    }
+
+    .order-number {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .confirmation-actions {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 50px;
+      padding: 1rem 1.8rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .action-primary {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+      box-shadow: 0 4px 15px rgba(255,107,157,0.3);
+    }
+
+    .action-green {
+      background: #25D366;
+      color: white;
+    }
+
+    .action-outline {
+      background: transparent;
+      color: var(--bubblegum-pink);
+      border: 2px solid var(--bubblegum-pink);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255,107,157,0.25);
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .receipt-title,
+    .timeline-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .receipt-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,107,157,0.16);
+      font-weight: 700;
+      color: var(--chocolate-brown);
+    }
+
+    .receipt-line:last-child {
+      border-bottom: none;
+    }
+
+    .receipt-line.total {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 1.25rem;
+      padding-top: 1.2rem;
+    }
+
+    .receipt-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: var(--light-pink);
+      border-radius: 20px;
+      font-weight: 700;
+      color: var(--chocolate-brown);
+    }
+
+    .receipt-emoji {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      bottom: 10px;
+      width: 4px;
+      border-radius: 999px;
+      background: rgba(255,107,157,0.18);
+    }
+
+    .timeline-step {
+      position: relative;
+      padding: 0 0 1.7rem 1.5rem;
+    }
+
+    .timeline-step:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -22px;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid var(--bubblegum-pink);
+      z-index: 2;
+    }
+
+    .timeline-step.done .timeline-dot {
+      background: var(--mint-green);
+      border-color: var(--mint-green);
+    }
+
+    .timeline-step.active .timeline-dot {
+      background: var(--golden-yellow);
+      border-color: var(--bubblegum-pink);
+      animation: pulse 1.6s infinite;
+    }
+
+    .timeline-step h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-step p {
+      color: var(--charcoal);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .share-section {
+      padding: 5rem 5%;
+      background: var(--cream-white);
+      text-align: center;
+    }
+
+    .share-card {
+      max-width: 980px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      padding: 3rem 2rem;
+      box-shadow: 0 15px 45px rgba(255,107,157,0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .share-card::before {
+      content: "🎉 🎂 💕 🍰 ✨";
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .share-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .share-text {
+      max-width: 650px;
+      margin: 1rem auto 2rem;
+      color: var(--charcoal);
+      font-weight: 600;
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    .share-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      line-height: 1.8;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media print {
+      nav,
+      .confirmation-actions,
+      .share-section,
+      footer,
+      .floating-pastries {
+        display: none !important;
+      }
+
+      .confirmation-hero {
+        min-height: auto;
+        padding: 20px;
+      }
+
+      .confirmation-layout {
+        grid-template-columns: 1fr;
+      }
+
+      body {
+        background: white;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .confirmation-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .success-title {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .confirmation-hero {
+        padding-top: 130px;
+      }
+
+      .success-card,
+      .receipt-card,
+      .timeline-card {
+        padding: 1.4rem;
+      }
+
+      .success-icon-wrap {
+        width: 120px;
+        height: 120px;
+        font-size: 4.3rem;
+      }
+
+      .success-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25" cy="40" r="2" fill="#FFD93D"/>
+          <circle cx="75" cy="35" r="2" fill="#FFD93D"/>
+          <circle cx="30" cy="25" r="1.5" fill="#FFD93D"/>
+          <circle cx="70" cy="45" r="1.5" fill="#FFD93D"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu/index.html">Menu</a></li>
+      <li><a href="custom.html">Custom</a></li>
+      <li><a href="story.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20would%20like%20to%20place%20an%20order." class="cart-icon">
+        <i class="fab fa-whatsapp"></i>
+        
+      </a>
+      <a href="https://wa.me/2348148124675" class="btn-order">Order Now 💫</a>
+    </div>
+  </nav>
+
+  <main class="confirmation-hero">
+    <div class="floating-pastries">
+      <div class="floating-item" style="top: 10%; left: 10%;">✅</div>
+      <div class="floating-item" style="top: 20%; right: 15%;">🧁</div>
+      <div class="floating-item" style="top: 60%; left: 20%;">🎉</div>
+      <div class="floating-item" style="top: 70%; right: 10%;">🥧</div>
+      <div class="floating-item" style="top: 40%; left: 80%;">🍩</div>
+      <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+    </div>
+
+    <section class="confirmation-layout">
+      <div class="success-card">
+        <div class="success-icon-wrap">✅</div>
+
+        <div class="page-badge">🎉 Order Request Received</div>
+
+        <h1 class="success-title">Thank You, Sweet Friend!</h1>
+
+        <p class="success-text">
+          Your ZCAS TastyBites order request has been prepared. We’ll confirm availability, delivery, and payment details through WhatsApp.
+        </p>
+
+        <div class="order-number-box">
+          <p class="order-number-label">Your Order Number</p>
+          <div class="order-number" id="orderNumber">ZCAS-0000</div>
+        </div>
+
+        <div class="confirmation-actions">
+          <a class="action-btn action-green" id="whatsappFollowup" href="#">Follow Up on WhatsApp 💬</a>
+          <button class="action-btn action-primary" onclick="printReceipt()">Print Receipt 🧾</button>
+          <a class="action-btn action-outline" href="menu/index.html">Order More Treats 🍰</a>
+        </div>
+      </div>
+
+      <div class="side-stack">
+        <aside class="receipt-card">
+          <h2 class="receipt-title">Order Receipt</h2>
+
+          <div class="receipt-item">
+            <div class="receipt-emoji">🥧</div>
+            <div>
+              <strong>Meat Pie</strong><br>
+              Qty: 2
+            </div>
+          </div>
+
+          <div class="receipt-item">
+            <div class="receipt-emoji">🧃</div>
+            <div>
+              <strong>Fruit Juice</strong><br>
+              Qty: 1
+            </div>
+          </div>
+
+          <div class="receipt-item">
+            <div class="receipt-emoji">🍩</div>
+            <div>
+              <strong>Doughnuts</strong><br>
+              Qty: 3
+            </div>
+          </div>
+
+          <div class="receipt-line">
+            <span>Subtotal</span>
+            <span>₦7,400</span>
+          </div>
+
+          <div class="receipt-line">
+            <span>Delivery Estimate</span>
+            <span>₦1,500</span>
+          </div>
+
+          <div class="receipt-line">
+            <span>Packaging</span>
+            <span>₦500</span>
+          </div>
+
+          <div class="receipt-line total">
+            <span>Total</span>
+            <span>₦9,400</span>
+          </div>
+        </aside>
+
+        <aside class="timeline-card">
+          <h2 class="timeline-title">Order Timeline</h2>
+
+          <div class="timeline">
+            <div class="timeline-step done">
+              <div class="timeline-dot"></div>
+              <h3>Request Created</h3>
+              <p>Your order request is ready.</p>
+            </div>
+
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <h3>Confirmation Pending</h3>
+              <p>ZCAS will confirm through WhatsApp.</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <h3>Preparation</h3>
+              <p>Your treats will be prepared fresh.</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <h3>Delivery / Pickup</h3>
+              <p>Your order will be delivered or prepared for pickup.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <section class="share-section">
+    <div class="share-card">
+      <h2 class="share-title">Share the Sweetness</h2>
+      <p class="share-text">
+        Loved your ZCAS experience? Share with a friend or come back to build a custom cake for birthdays, weddings, offices, and events.
+      </p>
+
+      <div class="share-actions">
+        <a class="action-btn action-primary" href="custom.html">Build Custom Cake 🎂</a>
+        <a class="action-btn action-outline" href="story.html">Read Our Story 📖</a>
+        <a class="action-btn action-green" href="https://wa.me/2348148124675">Chat With ZCAS 💬</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ZCAS TastyBites</h3>
+        <p>Where Every Bite Tells a Story</p>
+        <p>Homemade with love, shared with joy</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="menu/index.html">Menu</a></p>
+        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="story.html">Our Story</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>📍 Abuja, Nigeria</p>
+        <p>📞 08148124675</p>
+        <p>💬 WhatsApp orders available</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 8am - 8pm</p>
+        <p>Saturday: 9am - 9pm</p>
+        <p>Sunday: 10am - 6pm</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    </div>
+  </footer>
+
+  <script>
+    const orderNumber = document.getElementById("orderNumber");
+    const whatsappFollowup = document.getElementById("whatsappFollowup");
+
+    function generateOrderNumber() {
+      const date = new Date();
+      const year = String(date.getFullYear()).slice(-2);
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const random = Math.floor(1000 + Math.random() * 9000);
+      return `ZCAS-${year}${month}-${random}`;
+    }
+
+    const currentOrderNumber = generateOrderNumber();
+    orderNumber.textContent = currentOrderNumber;
+
+    whatsappFollowup.href =
+      "https://wa.me/2348148124675?text=" +
+      encodeURIComponent(`Hello ZCAS TastyBites, I want to follow up on my order ${currentOrderNumber}.`);
+
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.76) {
+        createSprinkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createSprinkle(x, y) {
+      const sprinkle = document.createElement('div');
+      sprinkle.className = 'sprinkle';
+      sprinkle.style.left = x + 'px';
+      sprinkle.style.top = y + 'px';
+
+      const colors = ['#FF6B9D', '#FFD93D', '#6BCB77', '#E6E6FA', '#FFDAB9'];
+      sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(sprinkle);
+
+      setTimeout(() => {
+        sprinkle.remove();
+      }, 1000);
+    }
+
+    function createConfetti() {
+      const colors = ['#FF6B9D', '#FFD93D', '#6BCB77', '#E6E6FA', '#FFDAB9'];
+
+      for (let i = 0; i < 70; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, 4000);
+        }, i * 35);
+      }
+    }
+
+    function printReceipt() {
+      createConfetti();
+      setTimeout(() => {
+        window.print();
+      }, 450);
+    }
+
+    document.querySelectorAll(".action-btn, .btn-order").forEach(button => {
+      button.addEventListener("click", createConfetti);
+    });
+
+    let logoClicks = 0;
+    document.querySelector(".logo-container").addEventListener("click", function(e) {
+      logoClicks++;
+
+      if (logoClicks === 5) {
+        e.preventDefault();
+        createConfetti();
+        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        logoClicks = 0;
+      }
+    });
+
+    window.addEventListener("load", () => {
+      setTimeout(createConfetti, 500);
+    });
+  </script>
+
+<script id="zcasWhatsappOrderOverride">
+  (function () {
+    const whatsappNumber = "2348148124675";
+
+    function getProductName(button) {
+      const card = button.closest(".menu-card, .suggestion-card, .card, .product-card");
+
+      if (!card) {
+        return "an order";
+      }
+
+      const title =
+        card.querySelector(".menu-name") ||
+        card.querySelector("h3") ||
+        card.querySelector(".product-title");
+
+      return title ? title.textContent.trim() : "an order";
+    }
+
+    function orderOnWhatsApp(productName) {
+      const message = `Hello ZCAS TastyBites, I would like to order ${productName}.`;
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    document.addEventListener(
+      "click",
+      function (event) {
+        const button = event.target.closest(
+          ".btn-add-cart, .add-suggestion, .checkout-btn, .whatsapp-order-btn"
+        );
+
+        if (!button) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const productName = getProductName(button);
+        orderOnWhatsApp(productName);
+      },
+      true
+    );
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".btn-add-cart, .add-suggestion").forEach(function (button) {
+        button.textContent = "Order on WhatsApp 💬";
+      });
+
+      document.querySelectorAll(".cart-icon").forEach(function (link) {
+        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          "Hello ZCAS TastyBites, I would like to place an order."
+        )}`;
+        link.title = "Order on WhatsApp";
+      });
+
+      document.querySelectorAll(".cart-badge").forEach(function (badge) {
+        badge.remove();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,1023 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Our Story | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a.active {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--bubblegum-pink);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--bubblegum-pink);
+      color: white;
+      font-size: 0.7rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+      border-color: white;
+    }
+
+    .page-header {
+      padding: 150px 5% 90px;
+      background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream-white) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-pastries {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0px var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin: 0 auto;
+      max-width: 760px;
+      font-weight: 600;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .story-section {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 5rem 5%;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .story-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,245,247,0.92), rgba(255,248,240,0.86));
+      z-index: 1;
+    }
+
+    .story-section.kitchen {
+      background-image: url("https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=1200");
+    }
+
+    .story-section.family {
+      background-image: url("https://images.unsplash.com/photo-1508737027454-e6454ef45afd?w=1200");
+    }
+
+    .story-section.community {
+      background-image: url("https://images.unsplash.com/photo-1517433670-611d4c239f95?w=1200");
+    }
+
+    .story-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 30px;
+      padding: 3rem;
+      box-shadow: 0 15px 45px rgba(255,107,157,0.18);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s ease;
+    }
+
+    .story-content.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .story-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 10px 25px rgba(255,107,157,0.25);
+      margin-bottom: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .story-content h2 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .story-content p {
+      color: var(--charcoal);
+      font-size: 1.12rem;
+      line-height: 1.8;
+      font-weight: 600;
+    }
+
+    .story-content.right {
+      margin-left: auto;
+    }
+
+    .bakers-section {
+      padding: 5rem 5%;
+      background: var(--cream-white);
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--bubblegum-pink);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .bakers-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .flip-card {
+      height: 360px;
+      perspective: 1000px;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.75s ease;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      padding: 2rem;
+      backface-visibility: hidden;
+      box-shadow: 0 10px 32px rgba(255,107,157,0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: white;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+    }
+
+    .chef-emoji {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .chef-name {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .chef-role {
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+    }
+
+    .flip-back .chef-name,
+    .flip-back .chef-role {
+      color: white;
+    }
+
+    .flip-back p {
+      line-height: 1.7;
+      font-weight: 600;
+      margin-top: 0.8rem;
+    }
+
+    .awards-section {
+      padding: 5rem 5%;
+      background: var(--light-pink);
+      text-align: center;
+    }
+
+    .awards-shelf {
+      max-width: 1000px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .award-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .award-card::after {
+      content: attr(data-detail);
+      position: absolute;
+      inset: auto 1rem 1rem 1rem;
+      background: var(--chocolate-brown);
+      color: white;
+      border-radius: 18px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transform: translateY(130%);
+      transition: all 0.3s ease;
+    }
+
+    .award-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(255,107,157,0.2);
+    }
+
+    .award-card:hover::after {
+      transform: translateY(0);
+    }
+
+    .award-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 10px 18px rgba(255,217,61,0.45));
+    }
+
+    .award-card h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 1.25rem;
+    }
+
+    .cta-section {
+      padding: 5rem 5%;
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-weight: 600;
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--bubblegum-pink);
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid white;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--bubblegum-pink);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      line-height: 1.8;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2.8rem;
+      }
+
+      .story-section {
+        background-attachment: scroll;
+        min-height: auto;
+      }
+
+      .story-content,
+      .story-content.right {
+        margin: 0;
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25" cy="40" r="2" fill="#FFD93D"/>
+          <circle cx="75" cy="35" r="2" fill="#FFD93D"/>
+          <circle cx="30" cy="25" r="1.5" fill="#FFD93D"/>
+          <circle cx="70" cy="45" r="1.5" fill="#FFD93D"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu/index.html">Menu</a></li>
+      <li><a href="custom.html">Custom</a></li>
+      <li><a class="active" href="story.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20would%20like%20to%20place%20an%20order." class="cart-icon">
+        <i class="fab fa-whatsapp"></i>
+        
+      </a>
+      <a href="https://wa.me/2348148124675" class="btn-order">Order Now 💫</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="floating-pastries">
+      <div class="floating-item" style="top: 10%; left: 10%;">📖</div>
+      <div class="floating-item" style="top: 20%; right: 15%;">🧁</div>
+      <div class="floating-item" style="top: 60%; left: 20%;">💕</div>
+      <div class="floating-item" style="top: 70%; right: 10%;">🥐</div>
+      <div class="floating-item" style="top: 40%; left: 80%;">🍪</div>
+      <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+    </div>
+
+    <div class="page-badge">📖 The Sweet Journey</div>
+    <h1 class="page-title">Our Story</h1>
+    <p class="page-subtitle">
+      A warm homemade pastry brand built around joy, celebration, family moments, and treats made with care.
+    </p>
+  </header>
+
+  <section class="story-section kitchen">
+    <div class="story-content">
+      <div class="story-icon">📘</div>
+      <h2>It All Started in a Small Kitchen...</h2>
+      <p>
+        ZCAS TastyBites began with a simple love for homemade treats. What started as small batches of pastries,
+        cakes, and snacks has grown into a sweet brand made to bring comfort, celebration, and joy to every customer.
+      </p>
+    </div>
+  </section>
+
+  <section class="story-section family">
+    <div class="story-content right">
+      <div class="story-icon">💕</div>
+      <h2>Made with Love, Shared with Joy</h2>
+      <p>
+        Every meat pie, doughnut, cupcake, cake, and drink is created with a warm homemade spirit.
+        Our goal is to make every order feel special, whether it is for a craving, a school event, an office meeting, or a birthday.
+      </p>
+    </div>
+  </section>
+
+  <section class="story-section community">
+    <div class="story-content">
+      <div class="story-icon">📍</div>
+      <h2>Now Serving Our Community</h2>
+      <p>
+        Based in Abuja, ZCAS TastyBites is growing into a cute premium bakery brand for everyday treats,
+        custom cake requests, catering, bulk orders, and memorable celebrations.
+      </p>
+    </div>
+  </section>
+
+  <section class="bakers-section">
+    <h2 class="section-title">👥 Meet the Bakers</h2>
+    <p class="section-subtitle">Hover each card to discover a little sweet secret</p>
+
+    <div class="bakers-grid">
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-face">
+            <div class="chef-emoji">👩‍🍳</div>
+            <h3 class="chef-name">The Cake Artist</h3>
+            <p class="chef-role">Custom Cakes</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3 class="chef-name">Favorite Pastry</h3>
+            <p>Chocolate cake with soft frosting.</p>
+            <p>Fun fact: Loves pink cake themes and tiny sprinkle details.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-face">
+            <div class="chef-emoji">👨‍🍳</div>
+            <h3 class="chef-name">The Pastry Pro</h3>
+            <p class="chef-role">Snacks & Pastries</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3 class="chef-name">Favorite Pastry</h3>
+            <p>Fresh meat pie straight from the oven.</p>
+            <p>Fun fact: Believes golden crust is an art form.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-face">
+            <div class="chef-emoji">👩‍🍳</div>
+            <h3 class="chef-name">The Sweet Stylist</h3>
+            <p class="chef-role">Boxes & Events</p>
+          </div>
+          <div class="flip-face flip-back">
+            <h3 class="chef-name">Favorite Treat</h3>
+            <p>Doughnuts and fruit juice combo.</p>
+            <p>Fun fact: Makes every box feel like a small gift.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="awards-section">
+    <h2 class="section-title">🏆 Sweet Moments Shelf</h2>
+    <p class="section-subtitle">Hover to reveal little milestones we are building toward</p>
+
+    <div class="awards-shelf">
+      <div class="award-card" data-detail="For handmade treats prepared with care.">
+        <div class="award-icon">🏆</div>
+        <h3>Homemade Quality</h3>
+      </div>
+
+      <div class="award-card" data-detail="For birthdays, schools, offices, and family celebrations.">
+        <div class="award-icon">🏅</div>
+        <h3>Event Ready</h3>
+      </div>
+
+      <div class="award-card" data-detail="For soft colours, sweet packaging, and cute presentation.">
+        <div class="award-icon">⭐</div>
+        <h3>Cute Brand Feel</h3>
+      </div>
+
+      <div class="award-card" data-detail="For WhatsApp-first ordering and fast customer conversations.">
+        <div class="award-icon">🎖️</div>
+        <h3>Easy Ordering</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Taste the Story?</h2>
+    <p>
+      Explore our menu, request a custom cake, or message us directly on WhatsApp.
+      We will help you create something sweet.
+    </p>
+
+    <div class="cta-actions">
+      <a href="menu/index.html" class="btn-primary">Explore Menu 🍰</a>
+      <a href="https://wa.me/2348148124675" class="btn-secondary">WhatsApp ZCAS 💬</a>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ZCAS TastyBites</h3>
+        <p>Where Every Bite Tells a Story</p>
+        <p>Homemade with love, shared with joy</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="menu/index.html">Menu</a></p>
+        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="story.html">Our Story</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>📍 Abuja, Nigeria</p>
+        <p>📞 08148124675</p>
+        <p>💬 WhatsApp orders available</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 8am - 8pm</p>
+        <p>Saturday: 9am - 9pm</p>
+        <p>Sunday: 10am - 6pm</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.76) {
+        createSprinkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createSprinkle(x, y) {
+      const sprinkle = document.createElement('div');
+      sprinkle.className = 'sprinkle';
+      sprinkle.style.left = x + 'px';
+      sprinkle.style.top = y + 'px';
+
+      const colors = ['#FF6B9D', '#FFD93D', '#6BCB77', '#E6E6FA', '#FFDAB9'];
+      sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(sprinkle);
+
+      setTimeout(() => {
+        sprinkle.remove();
+      }, 1000);
+    }
+
+    function createConfetti() {
+      const colors = ['#FF6B9D', '#FFD93D', '#6BCB77', '#E6E6FA', '#FFDAB9'];
+
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, 4000);
+        }, i * 50);
+      }
+    }
+
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const storyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.story-content').forEach(el => {
+      storyObserver.observe(el);
+    });
+
+    document.querySelectorAll('.btn-primary, .btn-secondary, .btn-order').forEach(button => {
+      button.addEventListener('click', () => {
+        createConfetti();
+      });
+    });
+
+    let logoClicks = 0;
+    document.querySelector('.logo-container').addEventListener('click', (e) => {
+      logoClicks++;
+
+      if (logoClicks === 5) {
+        e.preventDefault();
+        createConfetti();
+        alert('🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉');
+        logoClicks = 0;
+      }
+    });
+  </script>
+
+<script id="zcasWhatsappOrderOverride">
+  (function () {
+    const whatsappNumber = "2348148124675";
+
+    function getProductName(button) {
+      const card = button.closest(".menu-card, .suggestion-card, .card, .product-card");
+
+      if (!card) {
+        return "an order";
+      }
+
+      const title =
+        card.querySelector(".menu-name") ||
+        card.querySelector("h3") ||
+        card.querySelector(".product-title");
+
+      return title ? title.textContent.trim() : "an order";
+    }
+
+    function orderOnWhatsApp(productName) {
+      const message = `Hello ZCAS TastyBites, I would like to order ${productName}.`;
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    document.addEventListener(
+      "click",
+      function (event) {
+        const button = event.target.closest(
+          ".btn-add-cart, .add-suggestion, .checkout-btn, .whatsapp-order-btn"
+        );
+
+        if (!button) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const productName = getProductName(button);
+        orderOnWhatsApp(productName);
+      },
+      true
+    );
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".btn-add-cart, .add-suggestion").forEach(function (button) {
+        button.textContent = "Order on WhatsApp 💬";
+      });
+
+      document.querySelectorAll(".cart-icon").forEach(function (link) {
+        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          "Hello ZCAS TastyBites, I would like to place an order."
+        )}`;
+        link.title = "Order on WhatsApp";
+      });
+
+      document.querySelectorAll(".cart-badge").forEach(function (badge) {
+        badge.remove();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Classes & Workshops | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --golden-yellow: #FFD93D;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+    }
+
+    .page-header {
+      padding: 150px 5% 80px;
+      background:
+        radial-gradient(circle at 18% 30%, rgba(255, 107, 157, 0.18), transparent 25%),
+        radial-gradient(circle at 82% 35%, rgba(255, 217, 61, 0.22), transparent 25%),
+        linear-gradient(135deg, var(--light-pink), var(--cream-white));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      text-shadow: 3px 3px 0 var(--peach);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-subtitle {
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .classes-section {
+      padding: 5rem 5%;
+    }
+
+    .classes-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(255,107,157,0.16);
+    }
+
+    .workshop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .workshop-card {
+      background: var(--light-pink);
+      border: 3px solid transparent;
+      border-radius: 24px;
+      padding: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .workshop-card:hover {
+      transform: translateY(-7px);
+      background: var(--cream-white);
+      box-shadow: 0 12px 28px rgba(255,107,157,0.16);
+    }
+
+    .workshop-card.active {
+      border-color: var(--bubblegum-pink);
+      background: white;
+    }
+
+    .workshop-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .workshop-card h3,
+    .panel-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      margin-bottom: 0.7rem;
+    }
+
+    .panel-title {
+      font-size: 2rem;
+    }
+
+    .workshop-card h3 {
+      color: var(--chocolate-brown);
+    }
+
+    .workshop-card p,
+    .panel-text {
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 0.7rem;
+    }
+
+    .price {
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .field-label {
+      display: block;
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .input,
+    .textarea,
+    .select {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: var(--light-pink);
+      padding: 1rem 1.2rem;
+      border-radius: 20px;
+      color: var(--chocolate-brown);
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+    }
+
+    .textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .summary-box {
+      background: var(--cream-white);
+      border-radius: 24px;
+      padding: 1.3rem;
+      color: var(--chocolate-brown);
+      font-weight: 700;
+      line-height: 1.8;
+      white-space: pre-line;
+      margin-top: 1rem;
+    }
+
+    .main-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 1rem 1.3rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      font-size: 1rem;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255,107,157,0.25);
+    }
+
+    .green-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 950px) {
+      .page-title {
+        font-size: 2.8rem;
+      }
+
+      .classes-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <a href="cart.html" class="btn-order">Order Now 💬</a>
+  </nav>
+
+  <header class="page-header">
+    <div class="floating-item" style="top: 10%; left: 10%;">👩‍🍳</div>
+    <div class="floating-item" style="top: 20%; right: 15%;">🎂</div>
+    <div class="floating-item" style="top: 60%; left: 20%;">🧁</div>
+    <div class="floating-item" style="top: 70%; right: 10%;">🥧</div>
+    <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+
+    <div class="page-badge">👩‍🍳 Classes & Workshops</div>
+    <h1 class="page-title">Learn Something Sweet</h1>
+    <p class="page-subtitle">
+      Join ZCAS baking and pastry workshops for beginners, small business starters, and sweet treat lovers.
+    </p>
+  </header>
+
+  <section class="classes-section">
+    <div class="classes-layout">
+      <main class="panel">
+        <h2 class="panel-title">Choose a Workshop</h2>
+        <p class="panel-text">Select a class and send your registration interest on WhatsApp.</p>
+
+        <div class="workshop-grid">
+          <div class="workshop-card active" data-class="Beginner Baking Class" data-price="25000">
+            <div class="workshop-icon">🧁</div>
+            <h3>Beginner Baking</h3>
+            <p>Learn simple cakes, batter basics, and frosting starter skills.</p>
+            <div class="price">From ₦25,000</div>
+          </div>
+
+          <div class="workshop-card" data-class="Pastry & Snacks Class" data-price="30000">
+            <div class="workshop-icon">🥧</div>
+            <h3>Pastry & Snacks</h3>
+            <p>Learn meat pies, samosa, spring rolls, and snack prep.</p>
+            <div class="price">From ₦30,000</div>
+          </div>
+
+          <div class="workshop-card" data-class="Cake Decorating Class" data-price="40000">
+            <div class="workshop-icon">🎂</div>
+            <h3>Cake Decorating</h3>
+            <p>Learn cute frosting, colours, piping, and simple decoration.</p>
+            <div class="price">From ₦40,000</div>
+          </div>
+
+          <div class="workshop-card" data-class="Small Bakery Business Class" data-price="50000">
+            <div class="workshop-icon">🏪</div>
+            <h3>Bakery Business</h3>
+            <p>Learn packaging, pricing, ordering, and selling sweet treats.</p>
+            <div class="price">From ₦50,000</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="two-col">
+            <div>
+              <label class="field-label">Your Name</label>
+              <input class="input" id="name" placeholder="Your name">
+            </div>
+
+            <div>
+              <label class="field-label">Phone Number</label>
+              <input class="input" id="phone" placeholder="081...">
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label">Preferred Learning Mode</label>
+            <select class="select" id="mode">
+              <option>Physical Class</option>
+              <option>Private Coaching</option>
+              <option>Group Workshop</option>
+              <option>Online Guidance</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="field-label">Extra Notes</label>
+            <textarea class="textarea" id="notes" placeholder="Tell us your experience level or what you want to learn."></textarea>
+          </div>
+        </div>
+      </main>
+
+      <aside class="panel">
+        <h2 class="panel-title">Registration Summary</h2>
+        <p class="panel-text">Your workshop enquiry updates here.</p>
+
+        <div class="summary-box" id="summaryBox"></div>
+
+        <a class="main-btn green-btn" id="whatsappBtn" href="#">Send to WhatsApp 💬</a>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+  </footer>
+
+  <script>
+    let selectedClass = {
+      name: "Beginner Baking Class",
+      price: 25000
+    };
+
+    const nameInput = document.getElementById("name");
+    const phoneInput = document.getElementById("phone");
+    const modeInput = document.getElementById("mode");
+    const notesInput = document.getElementById("notes");
+    const summaryBox = document.getElementById("summaryBox");
+    const whatsappBtn = document.getElementById("whatsappBtn");
+
+    function formatNaira(amount) {
+      return "₦" + amount.toLocaleString();
+    }
+
+    function buildSummary() {
+      return `ZCAS TastyBites Workshop Enquiry
+----------------------------------
+Name: ${nameInput.value || "Not provided"}
+Phone: ${phoneInput.value || "Not provided"}
+Class: ${selectedClass.name}
+Starting Fee: ${formatNaira(selectedClass.price)}
+Learning Mode: ${modeInput.value}
+Notes: ${notesInput.value || "None"}
+
+Please confirm availability, schedule, and payment details.`;
+    }
+
+    function updateSummary() {
+      const text = buildSummary();
+      summaryBox.textContent = text;
+      whatsappBtn.href = "https://wa.me/2348148124675?text=" + encodeURIComponent(text);
+    }
+
+    document.querySelectorAll(".workshop-card").forEach(card => {
+      card.addEventListener("click", function() {
+        document.querySelectorAll(".workshop-card").forEach(item => item.classList.remove("active"));
+        this.classList.add("active");
+
+        selectedClass = {
+          name: this.dataset.class,
+          price: Number(this.dataset.price)
+        };
+
+        updateSummary();
+      });
+    });
+
+    [nameInput, phoneInput, modeInput, notesInput].forEach(input => {
+      input.addEventListener("input", updateSummary);
+      input.addEventListener("change", updateSummary);
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>
+

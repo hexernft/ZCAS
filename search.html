@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Search | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+    }
+
+    .page-header {
+      padding: 150px 5% 80px;
+      background: linear-gradient(135deg, var(--light-pink), var(--cream-white));
+      text-align: center;
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      text-shadow: 3px 3px 0 var(--peach);
+      margin-bottom: 1rem;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      max-width: 750px;
+      margin: 0 auto;
+      font-weight: 600;
+      line-height: 1.7;
+    }
+
+    .search-section {
+      padding: 5rem 5%;
+    }
+
+    .search-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .search-box {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(255,107,157,0.16);
+      margin-bottom: 2rem;
+    }
+
+    .search-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      background: var(--light-pink);
+      border-radius: 999px;
+      padding: 0.5rem;
+    }
+
+    .search-form input {
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 1rem 1.2rem;
+      color: var(--chocolate-brown);
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .search-form button {
+      border: none;
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+      border-radius: 999px;
+      padding: 1rem 1.8rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .result-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(255,107,157,0.18);
+    }
+
+    .result-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .result-card h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-card p {
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .result-card a {
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .page-title {
+        font-size: 2.8rem;
+      }
+
+      .search-form {
+        grid-template-columns: 1fr;
+        border-radius: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <a href="cart.html" class="btn-order">Order Now 💬</a>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-badge">🔎 Search ZCAS</div>
+    <h1 class="page-title">Find Something Sweet</h1>
+    <p class="page-subtitle">
+      Search cakes, pastries, drinks, wedding cakes, birthday cakes, catering, and policies.
+    </p>
+  </header>
+
+  <section class="search-section">
+    <div class="search-shell">
+      <div class="search-box">
+        <form class="search-form" id="searchForm">
+          <input id="searchInput" placeholder="Search meat pie, cake, wedding, catering..." />
+          <button type="submit">Search 🔎</button>
+        </form>
+      </div>
+
+      <div class="results-grid" id="resultsGrid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+  </footer>
+
+  <script>
+    const pages = [
+      { title: "Menu", emoji: "🍰", desc: "Browse ZCAS treats and products.", url: "menu/index.html", keywords: "menu cake meat pie samosa spring rolls doughnuts juice egg rolls pastries" },
+      { title: "Order Builder", emoji: "🧾", desc: "Select items and generate a WhatsApp order summary.", url: "cart.html", keywords: "order whatsapp png summary cart checkout" },
+      { title: "Custom Cake Builder", emoji: "🎂", desc: "Build a custom cake request.", url: "custom.html", keywords: "custom cake birthday wedding design flavour frosting" },
+      { title: "Wedding Cakes", emoji: "💍", desc: "Request premium wedding cakes.", url: "weddings.html", keywords: "wedding cake bridal tiers marriage" },
+      { title: "Birthday Cakes", emoji: "🎈", desc: "Create birthday cake requests.", url: "birthdays.html", keywords: "birthday cake age celebrant party" },
+      { title: "Catering", emoji: "🎉", desc: "Bulk orders and event catering.", url: "catering.html", keywords: "catering bulk event party small chops" },
+      { title: "Corporate Orders", emoji: "🏢", desc: "Office and staff treat orders.", url: "corporate.html", keywords: "corporate office staff meeting company" },
+      { title: "Gift Cards", emoji: "🎁", desc: "Sweet gift card requests.", url: "gift-cards.html", keywords: "gift card giftcard present surprise" },
+      { title: "Seasonal Menu", emoji: "🌸", desc: "Limited seasonal treats.", url: "seasonal.html", keywords: "seasonal valentine christmas easter summer" },
+      { title: "FAQ", emoji: "❓", desc: "Answers to common questions.", url: "faq.html", keywords: "faq questions delivery order allergy" },
+      { title: "Allergen Info", emoji: "⚠️", desc: "Allergen and ingredient guidance.", url: "allergens.html", keywords: "allergen allergy gluten egg dairy" },
+      { title: "Contact", emoji: "💬", desc: "Contact ZCAS TastyBites.", url: "contact.html", keywords: "contact whatsapp phone location" }
+    ];
+
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const resultsGrid = document.getElementById("resultsGrid");
+
+    function renderResults(query = "") {
+      const cleaned = query.toLowerCase().trim();
+
+      const results = pages.filter(page => {
+        if (!cleaned) return true;
+        return (
+          page.title.toLowerCase().includes(cleaned) ||
+          page.desc.toLowerCase().includes(cleaned) ||
+          page.keywords.toLowerCase().includes(cleaned)
+        );
+      });
+
+      resultsGrid.innerHTML = results.map(page => `
+        <div class="result-card">
+          <div class="result-emoji">${page.emoji}</div>
+          <h3>${page.title}</h3>
+          <p>${page.desc}</p>
+          <a href="${page.url}">Open page →</a>
+        </div>
+      `).join("");
+
+      if (results.length === 0) {
+        resultsGrid.innerHTML = `
+          <div class="result-card">
+            <div class="result-emoji">🍰</div>
+            <h3>No results found</h3>
+            <p>Try searching for cake, meat pie, catering, birthday, wedding, or WhatsApp order.</p>
+            <a href="cart.html">Build an order →</a>
+          </div>
+        `;
+      }
+    }
+
+    searchForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      renderResults(searchInput.value);
+    });
+
+    searchInput.addEventListener("input", function() {
+      renderResults(searchInput.value);
+    });
+
+    renderResults();
+  </script>
+</body>
+</html>
+

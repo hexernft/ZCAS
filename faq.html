@@ -1,0 +1,914 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FAQ | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--charcoal);
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--bubblegum-pink);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+      border-color: white;
+    }
+
+    .page-header {
+      padding: 150px 5% 80px;
+      background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream-white) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0px var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin: 0 auto;
+      max-width: 760px;
+      font-weight: 600;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .faq-section {
+      padding: 5rem 5%;
+      background: var(--light-pink);
+    }
+
+    .faq-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .help-card,
+    .faq-card {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(255, 107, 157, 0.16);
+    }
+
+    .help-card {
+      position: sticky;
+      top: 120px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .help-card::before {
+      content: "❓ 🧁 💬 🍰 ✨";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .help-icon {
+      width: 105px;
+      height: 105px;
+      border-radius: 32px;
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      margin: 1rem auto 1.5rem;
+      box-shadow: 0 14px 32px rgba(255, 107, 157, 0.25);
+      animation: float 3s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    .help-card h2,
+    .faq-card h2 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .help-card p {
+      font-weight: 600;
+      line-height: 1.7;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .help-actions {
+      display: grid;
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .help-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 1rem 1.4rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      text-align: center;
+    }
+
+    .pink-btn {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+    }
+
+    .green-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    .outline-btn {
+      background: transparent;
+      color: var(--bubblegum-pink);
+      border: 2px solid var(--bubblegum-pink);
+    }
+
+    .help-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.25);
+    }
+
+    .faq-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-btn {
+      border: none;
+      background: var(--light-pink);
+      color: var(--chocolate-brown);
+      border-radius: 999px;
+      padding: 0.8rem 1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-3px);
+      background: var(--golden-yellow);
+    }
+
+    .tab-btn.active {
+      background: var(--bubblegum-pink);
+      color: white;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--light-pink);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.14);
+    }
+
+    .faq-question {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--chocolate-brown);
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-question span:first-child {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .faq-icon {
+      width: 42px;
+      height: 42px;
+      background: white;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      flex: 0 0 auto;
+    }
+
+    .chevron {
+      color: var(--bubblegum-pink);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      background: white;
+    }
+
+    .faq-answer-inner {
+      padding: 1.2rem;
+      color: var(--charcoal);
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 260px;
+    }
+
+    .cta-section {
+      padding: 0 5% 5rem;
+      background: var(--light-pink);
+    }
+
+    .cta-card {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach), var(--golden-yellow));
+      border-radius: 34px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+      box-shadow: 0 15px 45px rgba(255, 107, 157, 0.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: "💬 🧁 🎂 🍩 ✨";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.2;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .cta-card h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-card p {
+      font-weight: 700;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      line-height: 1.8;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2.8rem;
+      }
+
+      .faq-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .help-card {
+        position: relative;
+        top: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25" cy="40" r="2" fill="#FFD93D"/>
+          <circle cx="75" cy="35" r="2" fill="#FFD93D"/>
+          <circle cx="30" cy="25" r="1.5" fill="#FFD93D"/>
+          <circle cx="70" cy="45" r="1.5" fill="#FFD93D"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu/index.html">Menu</a></li>
+      <li><a href="custom.html">Custom</a></li>
+      <li><a href="story.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <a href="cart.html" class="btn-order">Order Now 💬</a>
+  </nav>
+
+  <header class="page-header">
+    <div class="floating-item" style="top: 10%; left: 10%;">❓</div>
+    <div class="floating-item" style="top: 20%; right: 15%;">🧁</div>
+    <div class="floating-item" style="top: 60%; left: 20%;">💬</div>
+    <div class="floating-item" style="top: 70%; right: 10%;">🎂</div>
+    <div class="floating-item" style="top: 40%; left: 80%;">🥧</div>
+    <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+
+    <div class="page-badge">❓ Questions Customers Ask</div>
+    <h1 class="page-title">Frequently Asked Questions</h1>
+    <p class="page-subtitle">
+      Quick answers about orders, delivery, custom cakes, bulk requests, allergies, and WhatsApp ordering.
+    </p>
+  </header>
+
+  <section class="faq-section">
+    <div class="faq-layout">
+      <aside class="help-card">
+        <div class="help-icon">💬</div>
+        <h2>Need Help Fast?</h2>
+        <p>
+          The fastest way to order or ask questions is through WhatsApp. Send your order details and ZCAS will reply.
+        </p>
+
+        <div class="help-actions">
+          <a class="help-btn green-btn" href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20have%20a%20question.">Ask on WhatsApp 💬</a>
+          <a class="help-btn pink-btn" href="cart.html">Build Order 🧾</a>
+          <a class="help-btn outline-btn" href="menu/index.html">View Menu 🍰</a>
+        </div>
+      </aside>
+
+      <main class="faq-card">
+        <h2>FAQ Library</h2>
+
+        <div class="faq-tabs">
+          <button class="tab-btn active" data-category="all">All</button>
+          <button class="tab-btn" data-category="orders">Orders</button>
+          <button class="tab-btn" data-category="delivery">Delivery</button>
+          <button class="tab-btn" data-category="cakes">Cakes</button>
+          <button class="tab-btn" data-category="allergens">Allergens</button>
+        </div>
+
+        <div class="faq-list" id="faqList">
+          <div class="faq-item" data-category="orders">
+            <button class="faq-question">
+              <span><span class="faq-icon">💬</span> How do I place an order?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                You can place an order through WhatsApp. Use the order builder page to select items, generate a summary, and send the order directly to ZCAS.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="orders">
+            <button class="faq-question">
+              <span><span class="faq-icon">🧾</span> Can I get an order summary?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. The WhatsApp Order Builder can generate a clean PNG summary that you can download or share before sending your order.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="delivery">
+            <button class="faq-question">
+              <span><span class="faq-icon">🚚</span> Do you deliver in Abuja?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes, delivery is available in Abuja depending on your location, order size, and timing. Delivery fee is confirmed on WhatsApp.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="cakes">
+            <button class="faq-question">
+              <span><span class="faq-icon">🎂</span> Can I order a custom cake?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. Use the Custom Cake Builder to choose size, flavour, frosting colour, decoration, message, event date, and delivery details.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="cakes">
+            <button class="faq-question">
+              <span><span class="faq-icon">⏰</span> How early should I order a cake?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                For custom cakes, it is best to order early so design, ingredients, and schedule can be confirmed properly.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="orders">
+            <button class="faq-question">
+              <span><span class="faq-icon">🥧</span> What items do you sell?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                ZCAS sells meat pies, samosa, spring rolls, cakes, egg rolls, doughnuts, fruit juice, and custom treat requests.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="orders">
+            <button class="faq-question">
+              <span><span class="faq-icon">🎉</span> Do you take bulk or catering orders?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. Bulk orders are available for birthdays, schools, offices, meetings, corporate events, and family celebrations.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="allergens">
+            <button class="faq-question">
+              <span><span class="faq-icon">⚠️</span> What about allergies?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Please mention allergies before ordering. ZCAS will confirm what is possible before accepting the order.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="delivery">
+            <button class="faq-question">
+              <span><span class="faq-icon">📍</span> Where are you located?</span>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                ZCAS TastyBites is based in Abuja, Nigeria. Exact delivery or pickup details can be confirmed on WhatsApp.
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-card">
+      <h2>Still Have a Question?</h2>
+      <p>
+        Send ZCAS a message directly. We’ll help with product availability, cake requests, delivery, and bulk orders.
+      </p>
+
+      <div class="cta-actions">
+        <a class="help-btn green-btn" href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20need%20help%20with%20an%20order.">WhatsApp ZCAS 💬</a>
+        <a class="help-btn outline-btn" href="cart.html">Build My Order 🧾</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ZCAS TastyBites</h3>
+        <p>Where Every Bite Tells a Story</p>
+        <p>Homemade with love, shared with joy</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="menu/index.html">Menu</a></p>
+        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="story.html">Our Story</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>📍 Abuja, Nigeria</p>
+        <p>📞 08148124675</p>
+        <p>💬 WhatsApp orders available</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 8am - 8pm</p>
+        <p>Saturday: 9am - 9pm</p>
+        <p>Sunday: 10am - 6pm</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.76) {
+        createSprinkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createSprinkle(x, y) {
+      const sprinkle = document.createElement("div");
+      sprinkle.className = "sprinkle";
+      sprinkle.style.left = x + "px";
+      sprinkle.style.top = y + "px";
+
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+      sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(sprinkle);
+
+      setTimeout(() => {
+        sprinkle.remove();
+      }, 1000);
+    }
+
+    function createConfetti() {
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 40);
+      }
+    }
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", function() {
+        const item = this.closest(".faq-item");
+        item.classList.toggle("active");
+        createConfetti();
+      });
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        const category = this.dataset.category;
+
+        document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+
+        document.querySelectorAll(".faq-item").forEach(item => {
+          if (category === "all" || item.dataset.category === category) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+
+          item.classList.remove("active");
+        });
+
+        createConfetti();
+      });
+    });
+
+    document.querySelectorAll(".help-btn, .btn-order").forEach(button => {
+      button.addEventListener("click", createConfetti);
+    });
+
+    let logoClicks = 0;
+    document.querySelector(".logo-container").addEventListener("click", function(e) {
+      logoClicks++;
+
+      if (logoClicks === 5) {
+        e.preventDefault();
+        createConfetti();
+        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        logoClicks = 0;
+      }
+    });
+  </script>
+</body>
+</html>
+

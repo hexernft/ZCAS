@@ -1,0 +1,1487 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Menu | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a.active {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--bubblegum-pink);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--bubblegum-pink);
+      color: white;
+      font-size: 0.7rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+      border-color: white;
+    }
+
+    .page-header {
+      padding: 150px 5% 80px;
+      background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream-white) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-pastries {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(100px, 100px) rotate(90deg);
+      }
+
+      50% {
+        transform: translate(200px, 50px) rotate(180deg);
+      }
+
+      75% {
+        transform: translate(100px, -50px) rotate(270deg);
+      }
+
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0px var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin: 0 auto;
+      max-width: 760px;
+      font-weight: 600;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .filter-section {
+      background: white;
+      padding: 2rem 5%;
+      box-shadow: 0 5px 20px rgba(255, 107, 157, 0.1);
+      position: sticky;
+      top: 92px;
+      z-index: 800;
+    }
+
+    .filter-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-box {
+      flex: 1;
+      background: var(--light-pink);
+      border-radius: 50px;
+      padding: 0.5rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .search-box i {
+      color: var(--bubblegum-pink);
+    }
+
+    .search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0.8rem 0;
+      font-size: 1rem;
+      color: var(--chocolate-brown);
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+    }
+
+    .search-count {
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.9rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .filter-btn {
+      border: none;
+      background: var(--light-pink);
+      color: var(--chocolate-brown);
+      padding: 0.8rem 1.3rem;
+      border-radius: 50px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-3px);
+      background: var(--golden-yellow);
+    }
+
+    .filter-btn.active {
+      background: var(--bubblegum-pink);
+      color: white;
+      box-shadow: 0 5px 18px rgba(255, 107, 157, 0.3);
+    }
+
+    .dietary-btn.active {
+      background: var(--mint-green);
+    }
+
+    .dietary-btn:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      bottom: -42px;
+      transform: translateX(-50%);
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      z-index: 20;
+    }
+
+    .menu-section {
+      padding: 5rem 5%;
+      background: var(--light-pink);
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--bubblegum-pink);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .menu-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+    }
+
+    .menu-image-wrap {
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-card:hover .menu-image {
+      transform: scale(1.1);
+    }
+
+    .menu-emoji {
+      font-size: 5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .menu-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 107, 157, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .menu-card:hover .menu-overlay {
+      opacity: 1;
+    }
+
+    .quick-view-btn {
+      background: white;
+      color: var(--bubblegum-pink);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      border: 2px solid white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quick-view-btn:hover {
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      transform: scale(1.05);
+    }
+
+    .menu-info {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .menu-category {
+      display: inline-block;
+      color: var(--bubblegum-pink);
+      background: var(--light-pink);
+      padding: 0.35rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .menu-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      color: var(--chocolate-brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-desc {
+      color: var(--charcoal);
+      line-height: 1.6;
+      font-weight: 600;
+      min-height: 72px;
+      margin-bottom: 1rem;
+    }
+
+    .menu-price {
+      font-size: 1.5rem;
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      background: var(--cream-white);
+      color: var(--rose-gold);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .btn-add-cart {
+      background: white;
+      color: var(--bubblegum-pink);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      border: 2px solid var(--bubblegum-pink);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .btn-add-cart:hover {
+      background: var(--bubblegum-pink);
+      color: white;
+    }
+
+    .empty-state {
+      display: none;
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 25px;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .empty-state h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+
+    .builder-section {
+      padding: 5rem 5%;
+      background: var(--cream-white);
+      text-align: center;
+    }
+
+    .builder-box {
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 30px;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach), var(--golden-yellow));
+      box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .builder-box::before {
+      content: "🎂 🍓 🧁 🍫 ✨";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.2;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .builder-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .builder-text {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .builder-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .builder-step {
+      background: rgba(255,255,255,0.9);
+      color: var(--chocolate-brown);
+      border-radius: 20px;
+      padding: 1.2rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .builder-step:hover {
+      transform: translateY(-6px);
+      background: white;
+    }
+
+    .builder-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .builder-actions a {
+      background: white;
+      color: var(--bubblegum-pink);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .builder-actions a:hover {
+      transform: translateY(-4px);
+      background: var(--chocolate-brown);
+      color: white;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: rgba(93, 64, 55, 0.55);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(100%, 950px);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      animation: modalPop 0.25s ease-out;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.25);
+    }
+
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .modal-preview {
+      min-height: 360px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, var(--light-pink), var(--cream-white), var(--lavender));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      perspective: 900px;
+      cursor: grab;
+    }
+
+    .modal-preview span {
+      transition: transform 0.12s ease;
+    }
+
+    .modal-close {
+      float: right;
+      background: var(--light-pink);
+      color: var(--chocolate-brown);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--bubblegum-pink);
+      color: white;
+    }
+
+    .modal-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-price {
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-desc {
+      line-height: 1.8;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .ingredient-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .ingredient {
+      background: var(--light-pink);
+      color: var(--rose-gold);
+      border-radius: 999px;
+      padding: 0.5rem 0.9rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      line-height: 1.8;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2.8rem;
+      }
+
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-section {
+        position: relative;
+        top: auto;
+      }
+
+      .search-row {
+        flex-direction: column;
+      }
+
+      .search-count {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="../index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25" cy="40" r="2" fill="#FFD93D"/>
+          <circle cx="75" cy="35" r="2" fill="#FFD93D"/>
+          <circle cx="30" cy="25" r="1.5" fill="#FFD93D"/>
+          <circle cx="70" cy="45" r="1.5" fill="#FFD93D"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a class="active" href="index.html">Menu</a></li>
+      <li><a href="../custom.html">Custom</a></li>
+      <li><a href="../story.html">Our Story</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20would%20like%20to%20place%20an%20order." class="cart-icon">
+        <i class="fab fa-whatsapp"></i>
+        
+      </a>
+      <a href="https://wa.me/2348148124675" class="btn-order">Order Now 💫</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="floating-pastries">
+      <div class="floating-item" style="top: 10%; left: 10%;">🧁</div>
+      <div class="floating-item" style="top: 20%; right: 15%;">🍩</div>
+      <div class="floating-item" style="top: 60%; left: 20%;">🍰</div>
+      <div class="floating-item" style="top: 70%; right: 10%;">🥐</div>
+      <div class="floating-item" style="top: 40%; left: 80%;">🍪</div>
+      <div class="floating-item" style="top: 80%; left: 60%;">🧇</div>
+    </div>
+
+    <div class="page-badge">🍰 The Flavor Journey</div>
+    <h1 class="page-title">Find Your Craving</h1>
+    <p class="page-subtitle">
+      Search, filter, preview, customize, and order cute treats from ZCAS TastyBites in Abuja.
+    </p>
+  </header>
+
+  <section class="filter-section">
+    <div class="filter-inner">
+      <div class="search-row">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input id="searchInput" type="search" placeholder="Find your craving..." />
+        </div>
+
+        <div class="search-count">
+          <span id="itemCount">0</span> treats found
+        </div>
+      </div>
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-category="All">🍰 All</button>
+        <button class="filter-btn" data-category="Cakes">Cakes</button>
+        <button class="filter-btn" data-category="Cupcakes">Cupcakes</button>
+        <button class="filter-btn" data-category="Donuts">Donuts</button>
+        <button class="filter-btn" data-category="Cookies">Cookies</button>
+        <button class="filter-btn" data-category="Pastries">Pastries</button>
+        <button class="filter-btn" data-category="Drinks">Drinks</button>
+
+        <button class="filter-btn dietary-btn" data-diet="Vegan" data-tip="Plant-based friendly">🌱 Vegan</button>
+        <button class="filter-btn dietary-btn" data-diet="Gluten-Free" data-tip="Gluten-free request options">🌾 Gluten-Free</button>
+        <button class="filter-btn dietary-btn" data-diet="Nut-Free" data-tip="No nut ingredients listed">🥜 Nut-Free</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section">
+    <h2 class="section-title">⭐ Sweet Menu</h2>
+    <p class="section-subtitle">Every item opens a quick preview with ingredients and order options</p>
+
+    <div class="empty-state" id="emptyState">
+      <div style="font-size: 5rem;">🔎</div>
+      <h3>No treats found</h3>
+      <p>Try another search or remove some filters.</p>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <section class="builder-section">
+    <div class="builder-box">
+      <h2 class="builder-title">🎨 Build Your Own Treat</h2>
+      <p class="builder-text">
+        Choose your base, flavour, toppings, message, date, and delivery details. Then send your custom order request to ZCAS.
+      </p>
+
+      <div class="builder-steps">
+        <div class="builder-step">Step 1<br>Choose Base</div>
+        <div class="builder-step">Step 2<br>Pick Flavor</div>
+        <div class="builder-step">Step 3<br>Add Toppings</div>
+        <div class="builder-step">Step 4<br>Add Message</div>
+      </div>
+
+      <div class="builder-actions">
+        <a href="../custom.html">Open Builder 🎂</a>
+        <a href="https://wa.me/2348148124675">WhatsApp ZCAS 💬</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+
+      <div class="modal-grid">
+        <div class="modal-preview" id="modalPreview">
+          <span id="modalEmoji">🎂</span>
+        </div>
+
+        <div>
+          <h2 class="modal-title" id="modalTitle">Treat Name</h2>
+          <p class="modal-price" id="modalPrice">₦0</p>
+          <p class="modal-desc" id="modalDesc">Description goes here.</p>
+
+          <h3 style="color: var(--chocolate-brown); margin-bottom: 0.5rem;">Ingredients</h3>
+          <div class="ingredient-list" id="modalIngredients"></div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <button class="btn-add-cart" id="modalAdd">Order on WhatsApp 🎉</button>
+            <a class="btn-order" id="modalWhatsapp" href="#">Order on WhatsApp</a>
+          </div>
+
+          <p style="margin-top: 1rem; font-weight: 700; color: var(--rose-gold);">
+            Tip: move your mouse on the preview to rotate the treat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ZCAS TastyBites</h3>
+        <p>Where Every Bite Tells a Story</p>
+        <p>Homemade with love, shared with joy</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="../index.html">Home</a></p>
+        <p><a href="index.html">Menu</a></p>
+        <p><a href="../custom.html">Custom Orders</a></p>
+        <p><a href="../story.html">Our Story</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>📍 Abuja, Nigeria</p>
+        <p>📞 08148124675</p>
+        <p>💬 WhatsApp orders available</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 8am - 8pm</p>
+        <p>Saturday: 9am - 9pm</p>
+        <p>Sunday: 10am - 6pm</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuItems = [
+      {
+        name: "Classic Birthday Cake",
+        category: "Cakes",
+        price: "Request price",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800",
+        emoji: "🎂",
+        desc: "Soft celebration cake with cute frosting, colours, and custom message options.",
+        ingredients: ["Flour", "Eggs", "Butter", "Milk", "Sugar", "Vanilla"],
+        dietary: ["Custom"]
+      },
+      {
+        name: "Pink Cupcake Box",
+        category: "Cupcakes",
+        price: "Request price",
+        image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcf8?w=800",
+        emoji: "🧁",
+        desc: "Cute cupcakes for birthdays, gifting, school parties, and sweet surprises.",
+        ingredients: ["Flour", "Eggs", "Buttercream", "Sugar", "Vanilla"],
+        dietary: ["Custom"]
+      },
+      {
+        name: "Classic Doughnuts",
+        category: "Donuts",
+        price: "₦800",
+        image: "https://images.unsplash.com/photo-1551024601-bec0273e8a9e?w=800",
+        emoji: "🍩",
+        desc: "Soft, sweet doughnuts made for everyday cravings and treat boxes.",
+        ingredients: ["Flour", "Sugar", "Milk", "Yeast", "Butter"],
+        dietary: ["Nut-Free"]
+      },
+      {
+        name: "Cookie Gift Box",
+        category: "Cookies",
+        price: "Request price",
+        image: "https://images.unsplash.com/photo-1499636138143-bd649043ea52?w=800",
+        emoji: "🍪",
+        desc: "A sweet cookie box for gifting, sharing, and event treats.",
+        ingredients: ["Flour", "Butter", "Sugar", "Chocolate Chips"],
+        dietary: ["Custom"]
+      },
+      {
+        name: "Meat Pie",
+        category: "Pastries",
+        price: "₦1,500",
+        image: "https://images.unsplash.com/photo-1509365465985-25d11f150f52?w=800",
+        emoji: "🥧",
+        desc: "Flaky, golden, filling, and freshly made with a homemade taste.",
+        ingredients: ["Flour", "Butter", "Minced Meat", "Vegetables", "Spices"],
+        dietary: ["Nut-Free"]
+      },
+      {
+        name: "Samosa",
+        category: "Pastries",
+        price: "₦350",
+        image: "https://images.unsplash.com/photo-1509365465985-25d11f150f52?w=800",
+        emoji: "🥟",
+        desc: "Crispy little bites for parties, events, snack boxes, and cravings.",
+        ingredients: ["Flour", "Vegetables", "Spices", "Oil"],
+        dietary: ["Nut-Free"]
+      },
+      {
+        name: "Spring Rolls",
+        category: "Pastries",
+        price: "₦350",
+        image: "https://images.unsplash.com/photo-1509365465985-25d11f150f52?w=800",
+        emoji: "🌯",
+        desc: "Crunchy rolls packed with tasty filling for events and personal orders.",
+        ingredients: ["Pastry Sheets", "Vegetables", "Spices", "Oil"],
+        dietary: ["Nut-Free"]
+      },
+      {
+        name: "Fruit Juice",
+        category: "Drinks",
+        price: "₦2,000",
+        image: "https://images.unsplash.com/photo-1508737027454-e6454ef45afd?w=800",
+        emoji: "🧃",
+        desc: "Fresh, fruity, bright, and refreshing. Perfect with pastries and cakes.",
+        ingredients: ["Fresh Fruits", "Water", "Natural Sweetener"],
+        dietary: ["Vegan", "Gluten-Free", "Nut-Free"]
+      },
+      {
+        name: "Vegan Cake Request",
+        category: "Cakes",
+        price: "Request price",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800",
+        emoji: "🌱",
+        desc: "A custom plant-based cake request for customers with vegan preferences.",
+        ingredients: ["Custom vegan ingredients"],
+        dietary: ["Vegan"]
+      },
+      {
+        name: "Gluten-Free Cupcake Request",
+        category: "Cupcakes",
+        price: "Request price",
+        image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcf8?w=800",
+        emoji: "🌾",
+        desc: "A special cupcake request for gluten-sensitive customers.",
+        ingredients: ["Custom gluten-free ingredients"],
+        dietary: ["Gluten-Free"]
+      }
+    ];
+
+    let cartCount = 0;
+    let activeCategory = "All";
+    let activeDietary = [];
+    let query = "";
+    let selectedItem = null;
+
+    const menuGrid = document.getElementById("menuGrid");
+    const itemCount = document.getElementById("itemCount");
+    const searchInput = document.getElementById("searchInput");
+    const emptyState = document.getElementById("emptyState");
+
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalClose = document.getElementById("modalClose");
+    const modalPreview = document.getElementById("modalPreview");
+    const modalEmoji = document.getElementById("modalEmoji");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalIngredients = document.getElementById("modalIngredients");
+    const modalAdd = document.getElementById("modalAdd");
+    const modalWhatsapp = document.getElementById("modalWhatsapp");
+
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.76) {
+        createSprinkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createSprinkle(x, y) {
+      const sprinkle = document.createElement("div");
+      sprinkle.className = "sprinkle";
+      sprinkle.style.left = x + "px";
+      sprinkle.style.top = y + "px";
+
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+      sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(sprinkle);
+
+      setTimeout(() => sprinkle.remove(), 1000);
+    }
+
+    function createConfetti() {
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 50);
+      }
+    }
+
+    function addToCart(button) {
+      cartCount++;
+      document.querySelector(".cart-badge").textContent = cartCount;
+
+      if (button) {
+        const originalText = button.textContent;
+        button.textContent = "Added! ✓";
+        button.style.background = "#6BCB77";
+        button.style.color = "white";
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = "";
+          button.style.color = "";
+        }, 1500);
+      }
+
+      createConfetti();
+    }
+
+    function renderMenu() {
+      const filteredItems = menuItems.filter(item => {
+        const searchText = `${item.name} ${item.category} ${item.desc}`.toLowerCase();
+        const matchesQuery = searchText.includes(query.toLowerCase());
+        const matchesCategory = activeCategory === "All" || item.category === activeCategory;
+        const matchesDietary = activeDietary.length === 0 || activeDietary.every(diet => item.dietary.includes(diet));
+
+        return matchesQuery && matchesCategory && matchesDietary;
+      });
+
+      itemCount.textContent = filteredItems.length;
+      menuGrid.innerHTML = "";
+
+      if (filteredItems.length === 0) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      filteredItems.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "menu-card";
+
+        card.innerHTML = `
+          <div class="menu-image-wrap">
+            <img src="${item.image}" alt="${item.name}" class="menu-image">
+            <div class="menu-overlay">
+              <h3>${item.name}</h3>
+              <button class="quick-view-btn">Quick View 👀</button>
+            </div>
+          </div>
+
+          <div class="menu-info">
+            <span class="menu-category">${item.category}</span>
+            <h3 class="menu-name">${item.name}</h3>
+            <p class="menu-desc">${item.desc}</p>
+            <div class="tags">
+              ${item.dietary.map(tag => `<span class="tag">${tag}</span>`).join("")}
+            </div>
+            <p class="menu-price">${item.price}</p>
+            <button class="btn-add-cart">Order on WhatsApp 💬</button>
+          </div>
+        `;
+
+        card.querySelector(".quick-view-btn").addEventListener("click", () => openModal(item));
+        card.querySelector(".menu-image-wrap").addEventListener("click", () => openModal(item));
+        card.querySelector(".btn-add-cart").addEventListener("click", function() {
+          addToCart(this);
+        });
+
+        menuGrid.appendChild(card);
+      });
+    }
+
+    function openModal(item) {
+      selectedItem = item;
+
+      modalEmoji.textContent = item.emoji;
+      modalTitle.textContent = item.name;
+      modalPrice.textContent = item.price;
+      modalDesc.textContent = item.desc;
+
+      modalIngredients.innerHTML = item.ingredients.map(ingredient => `
+        <span class="ingredient">✨ ${ingredient}</span>
+      `).join("");
+
+      modalWhatsapp.href = "https://wa.me/2348148124675?text=" + encodeURIComponent(
+        `Hello ZCAS TastyBites, I would like to order ${item.name}.`
+      );
+
+      modalBackdrop.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.remove("active");
+      document.body.style.overflow = "";
+      modalEmoji.style.transform = "rotateX(0deg) rotateY(0deg)";
+    }
+
+    searchInput.addEventListener("input", function(e) {
+      query = e.target.value;
+      renderMenu();
+    });
+
+    document.querySelectorAll("[data-category]").forEach(button => {
+      button.addEventListener("click", function() {
+        activeCategory = this.dataset.category;
+
+        document.querySelectorAll("[data-category]").forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+
+        renderMenu();
+      });
+    });
+
+    document.querySelectorAll("[data-diet]").forEach(button => {
+      button.addEventListener("click", function() {
+        const diet = this.dataset.diet;
+
+        if (activeDietary.includes(diet)) {
+          activeDietary = activeDietary.filter(item => item !== diet);
+          this.classList.remove("active");
+        } else {
+          activeDietary.push(diet);
+          this.classList.add("active");
+        }
+
+        renderMenu();
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    modalBackdrop.addEventListener("click", function(e) {
+      if (e.target === modalBackdrop) {
+        closeModal();
+      }
+    });
+
+    modalAdd.addEventListener("click", function() {
+      addToCart(this);
+    });
+
+    modalPreview.addEventListener("mousemove", function(e) {
+      const rect = modalPreview.getBoundingClientRect();
+      const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -24;
+      const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 24;
+
+      modalEmoji.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    modalPreview.addEventListener("mouseleave", function() {
+      modalEmoji.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    let logoClicks = 0;
+    document.querySelector(".logo-container").addEventListener("click", function(e) {
+      logoClicks++;
+
+      if (logoClicks === 5) {
+        e.preventDefault();
+        createConfetti();
+        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        logoClicks = 0;
+      }
+    });
+
+    renderMenu();
+  </script>
+
+<script id="zcasWhatsappOrderOverride">
+  (function () {
+    const whatsappNumber = "2348148124675";
+
+    function getProductName(button) {
+      const card = button.closest(".menu-card, .suggestion-card, .card, .product-card");
+
+      if (!card) {
+        return "an order";
+      }
+
+      const title =
+        card.querySelector(".menu-name") ||
+        card.querySelector("h3") ||
+        card.querySelector(".product-title");
+
+      return title ? title.textContent.trim() : "an order";
+    }
+
+    function orderOnWhatsApp(productName) {
+      const message = `Hello ZCAS TastyBites, I would like to order ${productName}.`;
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    document.addEventListener(
+      "click",
+      function (event) {
+        const button = event.target.closest(
+          ".btn-add-cart, .add-suggestion, .checkout-btn, .whatsapp-order-btn"
+        );
+
+        if (!button) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const productName = getProductName(button);
+        orderOnWhatsApp(productName);
+      },
+      true
+    );
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".btn-add-cart, .add-suggestion").forEach(function (button) {
+        button.textContent = "Order on WhatsApp 💬";
+      });
+
+      document.querySelectorAll(".cart-icon").forEach(function (link) {
+        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          "Hello ZCAS TastyBites, I would like to place an order."
+        )}`;
+        link.title = "Order on WhatsApp";
+      });
+
+      document.querySelectorAll(".cart-badge").forEach(function (badge) {
+        badge.remove();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
+

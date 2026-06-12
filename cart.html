@@ -1,0 +1,1067 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WhatsApp Order Builder | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--charcoal);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--bubblegum-pink);
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+    }
+
+    .page-header {
+      padding: 150px 5% 80px;
+      background: linear-gradient(135deg, var(--light-pink), var(--cream-white));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      text-shadow: 3px 3px 0px var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      max-width: 780px;
+      margin: 1rem auto 0;
+      font-weight: 600;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .order-section {
+      padding: 5rem 5%;
+      background: var(--light-pink);
+    }
+
+    .order-layout {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(255, 107, 157, 0.16);
+    }
+
+    .panel-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .panel-text {
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .item-card {
+      background: var(--light-pink);
+      border-radius: 24px;
+      padding: 1.1rem;
+      display: grid;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .item-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.18);
+    }
+
+    .item-top {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .item-emoji {
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .item-name {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 1.05rem;
+    }
+
+    .item-price {
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      margin-top: 0.25rem;
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: var(--chocolate-brown);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .qty-btn:hover {
+      background: var(--bubblegum-pink);
+      color: white;
+      transform: scale(1.08);
+    }
+
+    .qty-number {
+      font-weight: 700;
+      color: var(--chocolate-brown);
+      min-width: 26px;
+      text-align: center;
+    }
+
+    .line-total {
+      color: var(--chocolate-brown);
+      font-weight: 700;
+    }
+
+    .customer-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .field-label {
+      display: block;
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .input,
+    .textarea,
+    .select {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: var(--light-pink);
+      padding: 1rem 1.2rem;
+      border-radius: 20px;
+      color: var(--chocolate-brown);
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+    }
+
+    .textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .summary-panel {
+      position: sticky;
+      top: 120px;
+    }
+
+    .summary-box {
+      background: var(--cream-white);
+      border-radius: 24px;
+      padding: 1.2rem;
+      line-height: 1.8;
+      color: var(--chocolate-brown);
+      font-weight: 700;
+      min-height: 240px;
+      white-space: pre-line;
+    }
+
+    .total-box {
+      margin-top: 1rem;
+      background: var(--light-pink);
+      border-radius: 22px;
+      padding: 1.2rem;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      font-weight: 700;
+      color: var(--chocolate-brown);
+      border-bottom: 1px solid rgba(255, 107, 157, 0.15);
+    }
+
+    .total-row:last-child {
+      border-bottom: none;
+    }
+
+    .grand-total {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 1.4rem;
+      padding-top: 1rem;
+    }
+
+    .button-stack {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .main-btn {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 1rem 1.2rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.25);
+    }
+
+    .pink-btn {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+    }
+
+    .green-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    .outline-btn {
+      background: transparent;
+      color: var(--bubblegum-pink);
+      border: 2px solid var(--bubblegum-pink);
+    }
+
+    .receipt-preview-wrap {
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    .receipt-preview-wrap.active {
+      display: block;
+    }
+
+    .receipt-preview-title {
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .receipt-img {
+      width: 100%;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      background: white;
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--rose-gold);
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: white;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2.8rem;
+      }
+
+      .order-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-panel {
+        position: relative;
+        top: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25" cy="40" r="2" fill="#FFD93D"/>
+          <circle cx="75" cy="35" r="2" fill="#FFD93D"/>
+          <circle cx="30" cy="25" r="1.5" fill="#FFD93D"/>
+          <circle cx="70" cy="45" r="1.5" fill="#FFD93D"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu/index.html">Menu</a></li>
+      <li><a href="custom.html">Custom</a></li>
+      <li><a href="story.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <a href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20would%20like%20to%20place%20an%20order." class="btn-order">Order Now 💬</a>
+  </nav>
+
+  <header class="page-header">
+    <div class="floating-item" style="top: 10%; left: 10%;">💬</div>
+    <div class="floating-item" style="top: 20%; right: 15%;">🧁</div>
+    <div class="floating-item" style="top: 60%; left: 20%;">🥧</div>
+    <div class="floating-item" style="top: 70%; right: 10%;">🍩</div>
+
+    <div class="page-badge">💬 WhatsApp Order Builder</div>
+    <h1 class="page-title">Select Treats & Send</h1>
+    <p class="page-subtitle">
+      Pick items, generate a clean order summary, create a lightweight PNG receipt, and send the order to ZCAS on WhatsApp.
+    </p>
+  </header>
+
+  <section class="order-section">
+    <div class="order-layout">
+      <div class="panel">
+        <h2 class="panel-title">Choose Items</h2>
+        <p class="panel-text">
+          Increase the quantity beside each product. The order summary updates automatically.
+        </p>
+
+        <div class="catalog-grid" id="catalogGrid"></div>
+
+        <div class="customer-grid">
+          <div>
+            <label class="field-label">Customer Name</label>
+            <input class="input" id="customerName" placeholder="Your name">
+          </div>
+
+          <div>
+            <label class="field-label">Phone Number</label>
+            <input class="input" id="customerPhone" placeholder="081...">
+          </div>
+
+          <div>
+            <label class="field-label">Delivery Area</label>
+            <input class="input" id="deliveryArea" placeholder="Example: Gwarimpa, Abuja">
+          </div>
+
+          <div>
+            <label class="field-label">Extra Notes</label>
+            <textarea class="textarea" id="extraNotes" placeholder="Any special request, delivery note, event date, or cake details?"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel summary-panel">
+        <h2 class="panel-title">Order Summary</h2>
+        <p class="panel-text">
+          Generate an image receipt, then send the order text to WhatsApp.
+        </p>
+
+        <div class="summary-box" id="summaryBox"></div>
+
+        <div class="total-box">
+          <div class="total-row">
+            <span>Items Total</span>
+            <span id="itemsTotal">₦0</span>
+          </div>
+
+          <div class="total-row">
+            <span>Delivery</span>
+            <span>Confirm on WhatsApp</span>
+          </div>
+
+          <div class="total-row grand-total">
+            <span>Estimated Total</span>
+            <span id="grandTotal">₦0</span>
+          </div>
+        </div>
+
+        <div class="button-stack">
+          <button class="main-btn pink-btn" id="generatePngBtn">Generate PNG Summary 🧾</button>
+          <button class="main-btn outline-btn" id="downloadPngBtn">Download PNG ⬇️</button>
+          <button class="main-btn outline-btn" id="sharePngBtn">Share PNG 📤</button>
+          <button class="main-btn green-btn" id="sendWhatsappBtn">Send Text to WhatsApp 💬</button>
+        </div>
+
+        <div class="receipt-preview-wrap" id="receiptPreviewWrap">
+          <p class="receipt-preview-title">PNG Preview</p>
+          <img class="receipt-img" id="receiptImg" alt="Order summary receipt">
+        </div>
+
+        <p class="note">
+          Note: WhatsApp links can open with text automatically. For image sending, use “Share PNG” on mobile or download the PNG and attach it in WhatsApp.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <canvas id="receiptCanvas" width="900" height="1200" style="display:none;"></canvas>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ZCAS TastyBites</h3>
+        <p>Where Every Bite Tells a Story</p>
+        <p>Homemade with love, shared with joy</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="menu/index.html">Menu</a></p>
+        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="story.html">Our Story</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>📍 Abuja, Nigeria</p>
+        <p>📞 08148124675</p>
+        <p>💬 WhatsApp orders available</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 8am - 8pm</p>
+        <p>Saturday: 9am - 9pm</p>
+        <p>Sunday: 10am - 6pm</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { id: "meat-pie", name: "Meat Pie", price: 1500, emoji: "🥧" },
+      { id: "samosa", name: "Samosa", price: 350, emoji: "🥟" },
+      { id: "spring-rolls", name: "Spring Rolls", price: 350, emoji: "🌯" },
+      { id: "egg-rolls", name: "Egg Rolls", price: 1000, emoji: "🥚" },
+      { id: "doughnuts", name: "Doughnuts", price: 800, emoji: "🍩" },
+      { id: "fruit-juice", name: "Fruit Juice", price: 2000, emoji: "🧃" },
+      { id: "cake", name: "Cake", price: 0, emoji: "🎂", customPrice: true },
+      { id: "custom-order", name: "Custom Cake / Event Order", price: 0, emoji: "✨", customPrice: true }
+    ];
+
+    const order = {};
+    let lastPngDataUrl = "";
+
+    const catalogGrid = document.getElementById("catalogGrid");
+    const customerName = document.getElementById("customerName");
+    const customerPhone = document.getElementById("customerPhone");
+    const deliveryArea = document.getElementById("deliveryArea");
+    const extraNotes = document.getElementById("extraNotes");
+    const summaryBox = document.getElementById("summaryBox");
+    const itemsTotal = document.getElementById("itemsTotal");
+    const grandTotal = document.getElementById("grandTotal");
+    const receiptCanvas = document.getElementById("receiptCanvas");
+    const receiptImg = document.getElementById("receiptImg");
+    const receiptPreviewWrap = document.getElementById("receiptPreviewWrap");
+
+    function formatNaira(amount) {
+      return "₦" + amount.toLocaleString();
+    }
+
+    function renderCatalog() {
+      catalogGrid.innerHTML = "";
+
+      products.forEach(product => {
+        order[product.id] = order[product.id] || 0;
+
+        const card = document.createElement("div");
+        card.className = "item-card";
+
+        const priceText = product.customPrice ? "Request price" : formatNaira(product.price);
+
+        card.innerHTML = `
+          <div class="item-top">
+            <div class="item-emoji">${product.emoji}</div>
+            <div>
+              <div class="item-name">${product.name}</div>
+              <div class="item-price">${priceText}</div>
+            </div>
+          </div>
+
+          <div class="qty-row">
+            <div class="qty-controls">
+              <button class="qty-btn" type="button" onclick="changeQty('${product.id}', -1)">−</button>
+              <span class="qty-number" id="qty-${product.id}">${order[product.id]}</span>
+              <button class="qty-btn" type="button" onclick="changeQty('${product.id}', 1)">+</button>
+            </div>
+
+            <div class="line-total" id="line-${product.id}">
+              ${product.customPrice ? "Quote" : formatNaira(product.price * order[product.id])}
+            </div>
+          </div>
+        `;
+
+        catalogGrid.appendChild(card);
+      });
+    }
+
+    function changeQty(id, amount) {
+      order[id] = Math.max(0, (order[id] || 0) + amount);
+
+      const qtyEl = document.getElementById(`qty-${id}`);
+      const lineEl = document.getElementById(`line-${id}`);
+      const product = products.find(item => item.id === id);
+
+      qtyEl.textContent = order[id];
+      lineEl.textContent = product.customPrice ? "Quote" : formatNaira(product.price * order[id]);
+
+      updateSummary();
+      createConfetti();
+    }
+
+    function getSelectedItems() {
+      return products
+        .filter(product => order[product.id] > 0)
+        .map(product => ({
+          ...product,
+          qty: order[product.id],
+          total: product.customPrice ? 0 : product.price * order[product.id]
+        }));
+    }
+
+    function getTotal() {
+      return getSelectedItems().reduce((sum, item) => sum + item.total, 0);
+    }
+
+    function buildTextSummary() {
+      const selectedItems = getSelectedItems();
+      const name = customerName.value.trim() || "Not provided";
+      const phone = customerPhone.value.trim() || "Not provided";
+      const area = deliveryArea.value.trim() || "Not provided";
+      const notes = extraNotes.value.trim() || "None";
+      const total = getTotal();
+
+      let text = "ZCAS TastyBites Order Summary\n";
+      text += "----------------------------\n";
+      text += `Name: ${name}\n`;
+      text += `Phone: ${phone}\n`;
+      text += `Delivery Area: ${area}\n\n`;
+
+      if (selectedItems.length === 0) {
+        text += "Items: No items selected yet.\n";
+      } else {
+        text += "Items:\n";
+        selectedItems.forEach(item => {
+          const priceText = item.customPrice ? "Request price" : `${formatNaira(item.price)} each`;
+          const totalText = item.customPrice ? "Quote" : formatNaira(item.total);
+          text += `- ${item.name} x${item.qty} (${priceText}) = ${totalText}\n`;
+        });
+      }
+
+      text += `\nEstimated Total: ${formatNaira(total)}\n`;
+      text += "Delivery: Confirm on WhatsApp\n";
+      text += `Notes: ${notes}\n`;
+
+      return text;
+    }
+
+    function updateSummary() {
+      const text = buildTextSummary();
+      const total = getTotal();
+
+      summaryBox.textContent = text;
+      itemsTotal.textContent = formatNaira(total);
+      grandTotal.textContent = formatNaira(total);
+    }
+
+    function generateReceiptPng() {
+      const selectedItems = getSelectedItems();
+      const ctx = receiptCanvas.getContext("2d");
+
+      const width = receiptCanvas.width;
+      const height = receiptCanvas.height;
+
+      ctx.fillStyle = "#FFF5F7";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = "#FFFFFF";
+      roundRect(ctx, 60, 60, width - 120, height - 120, 36);
+      ctx.fill();
+
+      ctx.fillStyle = "#FF6B9D";
+      ctx.font = "bold 48px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("ZCAS TastyBites", width / 2, 140);
+
+      ctx.fillStyle = "#5D4037";
+      ctx.font = "bold 30px Arial";
+      ctx.fillText("Order Summary", width / 2, 185);
+
+      ctx.fillStyle = "#B76E79";
+      ctx.font = "22px Arial";
+      ctx.fillText("Abuja, Nigeria · WhatsApp: 08148124675", width / 2, 225);
+
+      ctx.strokeStyle = "#FFDAB9";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(110, 260);
+      ctx.lineTo(width - 110, 260);
+      ctx.stroke();
+
+      let y = 315;
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#5D4037";
+      ctx.font = "bold 24px Arial";
+
+      const name = customerName.value.trim() || "Not provided";
+      const phone = customerPhone.value.trim() || "Not provided";
+      const area = deliveryArea.value.trim() || "Not provided";
+      const notes = extraNotes.value.trim() || "None";
+
+      ctx.fillText(`Name: ${name}`, 110, y);
+      y += 38;
+      ctx.fillText(`Phone: ${phone}`, 110, y);
+      y += 38;
+      ctx.fillText(`Delivery Area: ${area}`, 110, y);
+      y += 55;
+
+      ctx.fillStyle = "#FF6B9D";
+      ctx.font = "bold 30px Arial";
+      ctx.fillText("Selected Items", 110, y);
+      y += 45;
+
+      ctx.fillStyle = "#5D4037";
+      ctx.font = "23px Arial";
+
+      if (selectedItems.length === 0) {
+        ctx.fillText("No items selected yet.", 110, y);
+        y += 38;
+      } else {
+        selectedItems.forEach(item => {
+          const totalText = item.customPrice ? "Quote" : formatNaira(item.total);
+          const line = `${item.emoji} ${item.name} x${item.qty} — ${totalText}`;
+          ctx.fillText(line, 110, y);
+          y += 38;
+        });
+      }
+
+      y += 25;
+
+      ctx.strokeStyle = "#FFDAB9";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(110, y);
+      ctx.lineTo(width - 110, y);
+      ctx.stroke();
+
+      y += 55;
+
+      ctx.fillStyle = "#FF6B9D";
+      ctx.font = "bold 34px Arial";
+      ctx.fillText(`Estimated Total: ${formatNaira(getTotal())}`, 110, y);
+      y += 52;
+
+      ctx.fillStyle = "#5D4037";
+      ctx.font = "22px Arial";
+      wrapText(ctx, `Notes: ${notes}`, 110, y, width - 220, 32);
+
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#B76E79";
+      ctx.font = "bold 22px Arial";
+      ctx.fillText("Please attach/send this summary on WhatsApp after confirming.", width / 2, height - 120);
+
+      lastPngDataUrl = receiptCanvas.toDataURL("image/png", 0.85);
+      receiptImg.src = lastPngDataUrl;
+      receiptPreviewWrap.classList.add("active");
+
+      createConfetti();
+
+      return lastPngDataUrl;
+    }
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(" ");
+      let line = "";
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + " ";
+        const metrics = ctx.measureText(testLine);
+
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + " ";
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+
+      ctx.fillText(line, x, y);
+    }
+
+    function downloadPng() {
+      if (!lastPngDataUrl) {
+        generateReceiptPng();
+      }
+
+      const link = document.createElement("a");
+      link.download = "zcas-order-summary.png";
+      link.href = lastPngDataUrl;
+      link.click();
+    }
+
+    async function sharePng() {
+      if (!lastPngDataUrl) {
+        generateReceiptPng();
+      }
+
+      const blob = await (await fetch(lastPngDataUrl)).blob();
+      const file = new File([blob], "zcas-order-summary.png", { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: "ZCAS Order Summary",
+          text: "My ZCAS TastyBites order summary",
+          files: [file]
+        });
+      } else {
+        alert("Image sharing is not supported on this browser. The PNG will download instead.");
+        downloadPng();
+      }
+    }
+
+    function sendTextToWhatsapp() {
+      const text = buildTextSummary();
+      const url = "https://wa.me/2348148124675?text=" + encodeURIComponent(text);
+      createConfetti();
+      window.location.href = url;
+    }
+
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.76) {
+        createSprinkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createSprinkle(x, y) {
+      const sprinkle = document.createElement("div");
+      sprinkle.className = "sprinkle";
+      sprinkle.style.left = x + "px";
+      sprinkle.style.top = y + "px";
+
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+      sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(sprinkle);
+
+      setTimeout(() => sprinkle.remove(), 1000);
+    }
+
+    function createConfetti() {
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+
+      for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 35);
+      }
+    }
+
+    [customerName, customerPhone, deliveryArea, extraNotes].forEach(input => {
+      input.addEventListener("input", updateSummary);
+    });
+
+    document.getElementById("generatePngBtn").addEventListener("click", generateReceiptPng);
+    document.getElementById("downloadPngBtn").addEventListener("click", downloadPng);
+    document.getElementById("sharePngBtn").addEventListener("click", sharePng);
+    document.getElementById("sendWhatsappBtn").addEventListener("click", sendTextToWhatsapp);
+
+    renderCatalog();
+    updateSummary();
+  </script>
+</body>
+</html>
+

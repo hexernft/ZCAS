@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>404 | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --golden-yellow: #FFD93D;
+      --peach: #FFDAB9;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Quicksand', sans-serif;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255, 107, 157, 0.22), transparent 25%),
+        radial-gradient(circle at 80% 35%, rgba(255, 217, 61, 0.24), transparent 25%),
+        linear-gradient(135deg, var(--light-pink), var(--cream-white));
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 4rem 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.14;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .card {
+      max-width: 850px;
+      background: rgba(255,255,255,0.94);
+      border-radius: 40px;
+      padding: 3rem 2rem;
+      box-shadow: 0 18px 55px rgba(255,107,157,0.2);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "🧁 🍩 🎂 🥧 ✨";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .big-emoji {
+      font-size: 7rem;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 7rem;
+      color: var(--bubblegum-pink);
+      line-height: 1;
+      text-shadow: 4px 4px 0 var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: var(--chocolate-brown);
+      margin: 1rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    p {
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 1rem 1.6rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255,107,157,0.25);
+    }
+
+    .pink {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+    }
+
+    .outline {
+      border: 2px solid var(--bubblegum-pink);
+      color: var(--bubblegum-pink);
+      background: white;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 4.5rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .big-emoji {
+        font-size: 5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="floating-item" style="top: 10%; left: 10%;">🧁</div>
+    <div class="floating-item" style="top: 20%; right: 15%;">🍩</div>
+    <div class="floating-item" style="top: 60%; left: 20%;">🥧</div>
+    <div class="floating-item" style="top: 70%; right: 10%;">🎂</div>
+    <div class="floating-item" style="top: 80%; left: 60%;">✨</div>
+
+    <section class="card">
+      <div class="big-emoji">🍰</div>
+      <h1>404</h1>
+      <h2>Oops, this treat is missing!</h2>
+      <p>
+        The page you are looking for may have moved, melted, or been eaten. Let’s get you back to something sweet.
+      </p>
+
+      <div class="actions">
+        <a class="btn pink" href="index.html">Back Home 🏠</a>
+        <a class="btn outline" href="menu/index.html">View Menu 🍰</a>
+        <a class="btn outline" href="cart.html">Build Order 💬</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.76) {
+        const sprinkle = document.createElement("div");
+        sprinkle.className = "sprinkle";
+        sprinkle.style.left = e.clientX + "px";
+        sprinkle.style.top = e.clientY + "px";
+        const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+        sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(sprinkle);
+        setTimeout(() => sprinkle.remove(), 1000);
+      }
+    });
+  </script>
+</body>
+</html>
+

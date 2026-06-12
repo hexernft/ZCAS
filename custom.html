@@ -1,0 +1,1265 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Custom Cake Builder | ZCAS TastyBites</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bubblegum-pink: #FF6B9D;
+      --cream-white: #FFF8F0;
+      --chocolate-brown: #5D4037;
+      --mint-green: #6BCB77;
+      --golden-yellow: #FFD93D;
+      --lavender: #E6E6FA;
+      --peach: #FFDAB9;
+      --rose-gold: #B76E79;
+      --charcoal: #4A4A4A;
+      --light-pink: #FFF5F7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--light-pink);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">🧁</text></svg>'), auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sprinkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(255, 107, 157, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-zcas {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      letter-spacing: 2px;
+    }
+
+    .logo-tastybites {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--chocolate-brown);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a.active {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--bubblegum-pink);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--bubblegum-pink);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--bubblegum-pink);
+      color: white;
+      font-size: 0.7rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--peach));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-order:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+      border-color: white;
+    }
+
+    .page-header {
+      padding: 150px 5% 80px;
+      background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream-white) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-pastries {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      animation: floatAround 20s infinite linear;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, 50px) rotate(180deg); }
+      75% { transform: translate(100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .page-badge {
+      display: inline-block;
+      background: var(--golden-yellow);
+      color: var(--chocolate-brown);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .page-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      color: var(--chocolate-brown);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0px var(--peach);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin: 0 auto;
+      max-width: 760px;
+      font-weight: 600;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .builder-section {
+      padding: 5rem 5%;
+      background: var(--light-pink);
+    }
+
+    .builder-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .preview-card,
+    .controls-card,
+    .summary-card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+
+    .preview-card {
+      position: sticky;
+      top: 120px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .preview-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--bubblegum-pink);
+      margin-bottom: 1rem;
+    }
+
+    .cake-stage {
+      min-height: 430px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, var(--cream-white), var(--light-pink), var(--lavender));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 900px;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .cake-stage::before {
+      content: "✨ 🧁 🎂 🍓 🍫 ✨";
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 2rem;
+      opacity: 0.22;
+    }
+
+    .cake-preview {
+      width: 260px;
+      height: 280px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .cake-topper {
+      font-size: 3rem;
+      margin-bottom: -8px;
+      z-index: 4;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .cake-layer {
+      border-radius: 22px 22px 12px 12px;
+      box-shadow: inset 0 -10px 0 rgba(0,0,0,0.08);
+      border: 4px solid rgba(255,255,255,0.65);
+      position: relative;
+    }
+
+    .cake-layer::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 12%;
+      width: 76%;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.45);
+    }
+
+    .cake-layer-3 {
+      width: 145px;
+      height: 68px;
+      background: var(--bubblegum-pink);
+      z-index: 3;
+    }
+
+    .cake-layer-2 {
+      width: 200px;
+      height: 76px;
+      background: var(--peach);
+      z-index: 2;
+    }
+
+    .cake-layer-1 {
+      width: 255px;
+      height: 88px;
+      background: var(--golden-yellow);
+      z-index: 1;
+    }
+
+    .cake-message-preview {
+      position: absolute;
+      bottom: 78px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--chocolate-brown);
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.75);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      z-index: 6;
+      max-width: 210px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cake-stand {
+      width: 310px;
+      height: 26px;
+      border-radius: 999px;
+      background: var(--rose-gold);
+      margin-top: 6px;
+      box-shadow: 0 12px 20px rgba(93, 64, 55, 0.18);
+    }
+
+    .price-box {
+      margin-top: 1.5rem;
+      background: var(--light-pink);
+      border-radius: 22px;
+      padding: 1.3rem;
+    }
+
+    .price-label {
+      color: var(--chocolate-brown);
+      font-weight: 700;
+    }
+
+    .price-value {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 2.2rem;
+      margin-top: 0.3rem;
+    }
+
+    .step-block {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(255, 107, 157, 0.15);
+    }
+
+    .step-block:last-child {
+      border-bottom: none;
+    }
+
+    .step-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--chocolate-brown);
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .option-btn {
+      border: 2px solid transparent;
+      background: var(--light-pink);
+      color: var(--chocolate-brown);
+      border-radius: 20px;
+      padding: 1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-4px);
+      background: var(--golden-yellow);
+    }
+
+    .option-btn.active {
+      background: var(--bubblegum-pink);
+      color: white;
+      box-shadow: 0 5px 18px rgba(255,107,157,0.25);
+    }
+
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .color-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 4px solid white;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+    }
+
+    .color-btn:hover,
+    .color-btn.active {
+      transform: scale(1.18);
+      outline: 3px solid var(--bubblegum-pink);
+    }
+
+    .builder-input,
+    .builder-select,
+    .builder-textarea {
+      width: 100%;
+      border: none;
+      background: var(--light-pink);
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      outline: none;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      color: var(--chocolate-brown);
+    }
+
+    .builder-textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .field-label {
+      display: block;
+      color: var(--bubblegum-pink);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-section {
+      padding: 5rem 5%;
+      background: var(--cream-white);
+    }
+
+    .summary-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: "🎂 🍓 🧁 🍫 ✨";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;
+      font-size: 3rem;
+      white-space: nowrap;
+    }
+
+    .summary-title {
+      font-family: 'Fredoka One', cursive;
+      color: var(--bubblegum-pink);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .summary-text {
+      color: var(--charcoal);
+      line-height: 1.8;
+      font-weight: 600;
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+
+    .order-summary {
+      background: var(--light-pink);
+      border-radius: 22px;
+      padding: 1.5rem;
+      text-align: left;
+      max-width: 720px;
+      margin: 2rem auto;
+      position: relative;
+      line-height: 1.8;
+      font-weight: 700;
+      color: var(--chocolate-brown);
+    }
+
+    .summary-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--bubblegum-pink), var(--rose-gold));
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 107, 157, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--bubblegum-pink);
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid var(--bubblegum-pink);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bubblegum-pink);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: var(--chocolate-brown);
+      color: white;
+      padding: 3rem 5% 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      line-height: 1.8;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      opacity: 1;
+      color: var(--bubblegum-pink);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti-fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .builder-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-card {
+        position: relative;
+        top: auto;
+      }
+
+      .page-title {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .cake-stage {
+        min-height: 340px;
+      }
+
+      .cake-preview {
+        transform: scale(0.82);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" width="60" height="60">
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 30 50 Q 20 35 35 35 Q 50 20 65 35 Q 80 35 70 50 Q 50 65 30 50"
+                fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25" cy="40" r="2" fill="#FFD93D"/>
+          <circle cx="75" cy="35" r="2" fill="#FFD93D"/>
+          <circle cx="30" cy="25" r="1.5" fill="#FFD93D"/>
+          <circle cx="70" cy="45" r="1.5" fill="#FFD93D"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="logo-zcas">ZCAS</span>
+        <span class="logo-tastybites">TastyBites</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu/index.html">Menu</a></li>
+      <li><a class="active" href="custom.html">Custom</a></li>
+      <li><a href="story.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="https://wa.me/2348148124675?text=Hello%20ZCAS%20TastyBites%2C%20I%20would%20like%20to%20place%20an%20order." class="cart-icon">
+        <i class="fab fa-whatsapp"></i>
+        
+      </a>
+      <a href="https://wa.me/2348148124675" class="btn-order">Order Now 💫</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="floating-pastries">
+      <div class="floating-item" style="top: 10%; left: 10%;">🎂</div>
+      <div class="floating-item" style="top: 20%; right: 15%;">🍓</div>
+      <div class="floating-item" style="top: 60%; left: 20%;">🧁</div>
+      <div class="floating-item" style="top: 70%; right: 10%;">🍫</div>
+      <div class="floating-item" style="top: 40%; left: 80%;">✨</div>
+      <div class="floating-item" style="top: 80%; left: 60%;">💝</div>
+    </div>
+
+    <div class="page-badge">🎂 Create Your Masterpiece</div>
+    <h1 class="page-title">Custom Cake Builder</h1>
+    <p class="page-subtitle">
+      Choose your shape, size, flavour, frosting, decoration, message, date, and delivery details.
+      Watch your cake preview update as you build.
+    </p>
+  </header>
+
+  <section class="builder-section">
+    <div class="builder-layout">
+      <div class="preview-card">
+        <h2 class="preview-title">Live Cake Preview</h2>
+
+        <div class="cake-stage" id="cakeStage">
+          <div>
+            <div class="cake-preview" id="cakePreview">
+              <div class="cake-topper" id="cakeTopper">🍒</div>
+              <div class="cake-layer cake-layer-3" id="layer3"></div>
+              <div class="cake-layer cake-layer-2" id="layer2"></div>
+              <div class="cake-message-preview" id="messagePreview">Happy Birthday!</div>
+              <div class="cake-layer cake-layer-1" id="layer1"></div>
+            </div>
+            <div class="cake-stand"></div>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <p class="price-label">Estimated price</p>
+          <div class="price-value" id="priceValue">₦45,000</div>
+        </div>
+      </div>
+
+      <div class="controls-card">
+        <div class="step-block">
+          <h3 class="step-title">Step 1: Shape</h3>
+          <div class="option-grid" data-group="shape">
+            <button class="option-btn active" data-value="Round" data-price="0">Round</button>
+            <button class="option-btn" data-value="Square" data-price="5000">Square</button>
+            <button class="option-btn" data-value="Heart" data-price="7000">Heart</button>
+            <button class="option-btn" data-value="Number" data-price="10000">Number</button>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <h3 class="step-title">Step 2: Size</h3>
+          <div class="option-grid" data-group="size">
+            <button class="option-btn active" data-value='6"' data-price="0">6"</button>
+            <button class="option-btn" data-value='8"' data-price="12000">8"</button>
+            <button class="option-btn" data-value='10"' data-price="22000">10"</button>
+            <button class="option-btn" data-value='12"' data-price="35000">12"</button>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <h3 class="step-title">Step 3: Flavour Layers</h3>
+          <div class="two-col">
+            <div>
+              <label class="field-label">Layer 1</label>
+              <select class="builder-select" id="layerOne">
+                <option>Vanilla</option>
+                <option>Chocolate</option>
+                <option>Red Velvet</option>
+                <option>Strawberry</option>
+                <option>Caramel</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label">Layer 2</label>
+              <select class="builder-select" id="layerTwo">
+                <option>Chocolate</option>
+                <option>Vanilla</option>
+                <option>Red Velvet</option>
+                <option>Strawberry</option>
+                <option>Caramel</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <h3 class="step-title">Step 4: Frosting Colour</h3>
+          <div class="color-options">
+            <button class="color-btn active" data-color="#FF6B9D" style="background:#FF6B9D"></button>
+            <button class="color-btn" data-color="#FFD93D" style="background:#FFD93D"></button>
+            <button class="color-btn" data-color="#6BCB77" style="background:#6BCB77"></button>
+            <button class="color-btn" data-color="#E6E6FA" style="background:#E6E6FA"></button>
+            <button class="color-btn" data-color="#FFDAB9" style="background:#FFDAB9"></button>
+            <button class="color-btn" data-color="#B76E79" style="background:#B76E79"></button>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <h3 class="step-title">Step 5: Decoration</h3>
+          <div class="option-grid" data-group="decor">
+            <button class="option-btn active" data-value="Cherry" data-topper="🍒" data-price="0">🍒 Cherry</button>
+            <button class="option-btn" data-value="Strawberries" data-topper="🍓" data-price="4000">🍓 Strawberries</button>
+            <button class="option-btn" data-value="Chocolate" data-topper="🍫" data-price="4500">🍫 Chocolate</button>
+            <button class="option-btn" data-value="Flowers" data-topper="🌸" data-price="6500">🌸 Flowers</button>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <h3 class="step-title">Step 6: Personalization</h3>
+
+          <label class="field-label">Cake Message</label>
+          <input class="builder-input" id="cakeMessage" value="Happy Birthday!" maxlength="36" />
+
+          <div style="margin-top: 1rem;">
+            <label class="field-label">Extra Notes</label>
+            <textarea class="builder-textarea" id="cakeNotes" placeholder="Tell us theme, colours, age, reference idea, or any special request"></textarea>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <h3 class="step-title">Step 7: Date & Delivery</h3>
+
+          <div class="two-col">
+            <div>
+              <label class="field-label">Event Date</label>
+              <input class="builder-input" id="eventDate" type="date" />
+            </div>
+
+            <div>
+              <label class="field-label">Delivery / Pickup</label>
+              <select class="builder-select" id="deliveryMode">
+                <option>Delivery</option>
+                <option>Pickup</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem;">
+            <label class="field-label">Delivery Area</label>
+            <input class="builder-input" id="deliveryArea" placeholder="Example: Gwarimpa, Abuja" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="summary-section">
+    <div class="summary-card">
+      <h2 class="summary-title">Your Custom Cake Summary</h2>
+      <p class="summary-text">
+        Review your cake request below. You can send it directly to ZCAS TastyBites on WhatsApp.
+      </p>
+
+      <div class="order-summary" id="orderSummary"></div>
+
+      <div class="summary-actions">
+        <a class="btn-primary" id="whatsappRequest" href="#" target="_blank">Send Request on WhatsApp 💬</a>
+        <button class="btn-secondary" onclick="saveCakeIdea()">Save Idea 💾</button>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ZCAS TastyBites</h3>
+        <p>Where Every Bite Tells a Story</p>
+        <p>Homemade with love, shared with joy</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="menu/index.html">Menu</a></p>
+        <p><a href="custom.html">Custom Orders</a></p>
+        <p><a href="story.html">Our Story</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>📍 Abuja, Nigeria</p>
+        <p>📞 08148124675</p>
+        <p>💬 WhatsApp orders available</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 8am - 8pm</p>
+        <p>Saturday: 9am - 9pm</p>
+        <p>Sunday: 10am - 6pm</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZCAS TastyBites. Made with 💕 by PraxiomAI.io</p>
+    </div>
+  </footer>
+
+  <script>
+    const state = {
+      shape: { value: "Round", price: 0 },
+      size: { value: '6"', price: 0 },
+      decor: { value: "Cherry", price: 0, topper: "🍒" },
+      color: "#FF6B9D",
+      basePrice: 45000
+    };
+
+    const layer1 = document.getElementById("layer1");
+    const layer2 = document.getElementById("layer2");
+    const layer3 = document.getElementById("layer3");
+    const cakeTopper = document.getElementById("cakeTopper");
+    const cakeMessage = document.getElementById("cakeMessage");
+    const messagePreview = document.getElementById("messagePreview");
+    const cakePreview = document.getElementById("cakePreview");
+    const cakeStage = document.getElementById("cakeStage");
+    const priceValue = document.getElementById("priceValue");
+    const orderSummary = document.getElementById("orderSummary");
+    const whatsappRequest = document.getElementById("whatsappRequest");
+
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.76) {
+        createSprinkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createSprinkle(x, y) {
+      const sprinkle = document.createElement("div");
+      sprinkle.className = "sprinkle";
+      sprinkle.style.left = x + "px";
+      sprinkle.style.top = y + "px";
+
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+      sprinkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(sprinkle);
+
+      setTimeout(() => sprinkle.remove(), 1000);
+    }
+
+    function createConfetti() {
+      const colors = ["#FF6B9D", "#FFD93D", "#6BCB77", "#E6E6FA", "#FFDAB9"];
+
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 50);
+      }
+    }
+
+    function formatNaira(amount) {
+      return "₦" + amount.toLocaleString();
+    }
+
+    function calculatePrice() {
+      return state.basePrice + state.shape.price + state.size.price + state.decor.price;
+    }
+
+    function updatePreview() {
+      layer1.style.background = state.color;
+      layer2.style.background = softenColor(state.color, 25);
+      layer3.style.background = softenColor(state.color, 45);
+      cakeTopper.textContent = state.decor.topper;
+
+      const message = cakeMessage.value.trim() || "Your message";
+      messagePreview.textContent = message;
+
+      if (state.shape.value === "Heart") {
+        layer1.style.borderRadius = "45px 45px 18px 18px";
+        layer2.style.borderRadius = "40px 40px 16px 16px";
+        layer3.style.borderRadius = "35px 35px 14px 14px";
+      } else if (state.shape.value === "Square") {
+        layer1.style.borderRadius = "12px";
+        layer2.style.borderRadius = "12px";
+        layer3.style.borderRadius = "12px";
+      } else {
+        layer1.style.borderRadius = "22px 22px 12px 12px";
+        layer2.style.borderRadius = "22px 22px 12px 12px";
+        layer3.style.borderRadius = "22px 22px 12px 12px";
+      }
+
+      const total = calculatePrice();
+      priceValue.textContent = formatNaira(total);
+
+      const layerOne = document.getElementById("layerOne").value;
+      const layerTwo = document.getElementById("layerTwo").value;
+      const notes = document.getElementById("cakeNotes").value || "None";
+      const eventDate = document.getElementById("eventDate").value || "Not selected";
+      const deliveryMode = document.getElementById("deliveryMode").value;
+      const deliveryArea = document.getElementById("deliveryArea").value || "Not provided";
+
+      orderSummary.innerHTML = `
+        <strong>Shape:</strong> ${state.shape.value}<br>
+        <strong>Size:</strong> ${state.size.value}<br>
+        <strong>Flavours:</strong> Layer 1 - ${layerOne}, Layer 2 - ${layerTwo}<br>
+        <strong>Frosting Colour:</strong> ${state.color}<br>
+        <strong>Decoration:</strong> ${state.decor.value}<br>
+        <strong>Message:</strong> ${message}<br>
+        <strong>Event Date:</strong> ${eventDate}<br>
+        <strong>Delivery Option:</strong> ${deliveryMode}<br>
+        <strong>Delivery Area:</strong> ${deliveryArea}<br>
+        <strong>Notes:</strong> ${notes}<br>
+        <strong>Estimated Price:</strong> ${formatNaira(total)}
+      `;
+
+      const whatsappMessage =
+        `Hello ZCAS TastyBites, I want to order a custom cake.%0A%0A` +
+        `Shape: ${state.shape.value}%0A` +
+        `Size: ${state.size.value}%0A` +
+        `Layer 1: ${layerOne}%0A` +
+        `Layer 2: ${layerTwo}%0A` +
+        `Frosting Colour: ${state.color}%0A` +
+        `Decoration: ${state.decor.value}%0A` +
+        `Message: ${message}%0A` +
+        `Event Date: ${eventDate}%0A` +
+        `Delivery Option: ${deliveryMode}%0A` +
+        `Delivery Area: ${deliveryArea}%0A` +
+        `Notes: ${notes}%0A` +
+        `Estimated Price: ${formatNaira(total)}`;
+
+      whatsappRequest.href = "https://wa.me/2348148124675?text=" + whatsappMessage;
+    }
+
+    function softenColor(hex, percent) {
+      const num = parseInt(hex.replace("#", ""), 16);
+      let r = (num >> 16) + percent;
+      let g = ((num >> 8) & 0x00ff) + percent;
+      let b = (num & 0x0000ff) + percent;
+
+      r = Math.min(255, r);
+      g = Math.min(255, g);
+      b = Math.min(255, b);
+
+      return "#" + (b | (g << 8) | (r << 16)).toString(16).padStart(6, "0");
+    }
+
+    document.querySelectorAll(".option-grid").forEach(group => {
+      const groupName = group.dataset.group;
+
+      group.querySelectorAll(".option-btn").forEach(button => {
+        button.addEventListener("click", function() {
+          group.querySelectorAll(".option-btn").forEach(btn => btn.classList.remove("active"));
+          this.classList.add("active");
+
+          if (groupName === "shape") {
+            state.shape = {
+              value: this.dataset.value,
+              price: Number(this.dataset.price)
+            };
+          }
+
+          if (groupName === "size") {
+            state.size = {
+              value: this.dataset.value,
+              price: Number(this.dataset.price)
+            };
+          }
+
+          if (groupName === "decor") {
+            state.decor = {
+              value: this.dataset.value,
+              price: Number(this.dataset.price),
+              topper: this.dataset.topper
+            };
+          }
+
+          updatePreview();
+        });
+      });
+    });
+
+    document.querySelectorAll(".color-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        document.querySelectorAll(".color-btn").forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+        state.color = this.dataset.color;
+        updatePreview();
+      });
+    });
+
+    document.querySelectorAll("input, select, textarea").forEach(input => {
+      input.addEventListener("input", updatePreview);
+      input.addEventListener("change", updatePreview);
+    });
+
+    cakeStage.addEventListener("mousemove", function(e) {
+      const rect = cakeStage.getBoundingClientRect();
+      const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -18;
+      const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 18;
+
+      cakePreview.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    cakeStage.addEventListener("mouseleave", function() {
+      cakePreview.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+
+    function saveCakeIdea() {
+      createConfetti();
+      alert("🎂 Cake idea saved visually! Later we can connect this to real customer accounts.");
+    }
+
+    let logoClicks = 0;
+    document.querySelector(".logo-container").addEventListener("click", function(e) {
+      logoClicks++;
+
+      if (logoClicks === 5) {
+        e.preventDefault();
+        createConfetti();
+        alert("🎉 SURPRISE! Use code SWEET5 for 5% off your first order! 🎉");
+        logoClicks = 0;
+      }
+    });
+
+    updatePreview();
+  </script>
+
+<script id="zcasWhatsappOrderOverride">
+  (function () {
+    const whatsappNumber = "2348148124675";
+
+    function getProductName(button) {
+      const card = button.closest(".menu-card, .suggestion-card, .card, .product-card");
+
+      if (!card) {
+        return "an order";
+      }
+
+      const title =
+        card.querySelector(".menu-name") ||
+        card.querySelector("h3") ||
+        card.querySelector(".product-title");
+
+      return title ? title.textContent.trim() : "an order";
+    }
+
+    function orderOnWhatsApp(productName) {
+      const message = `Hello ZCAS TastyBites, I would like to order ${productName}.`;
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    document.addEventListener(
+      "click",
+      function (event) {
+        const button = event.target.closest(
+          ".btn-add-cart, .add-suggestion, .checkout-btn, .whatsapp-order-btn"
+        );
+
+        if (!button) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const productName = getProductName(button);
+        orderOnWhatsApp(productName);
+      },
+      true
+    );
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".btn-add-cart, .add-suggestion").forEach(function (button) {
+        button.textContent = "Order on WhatsApp 💬";
+      });
+
+      document.querySelectorAll(".cart-icon").forEach(function (link) {
+        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          "Hello ZCAS TastyBites, I would like to place an order."
+        )}`;
+        link.title = "Order on WhatsApp";
+      });
+
+      document.querySelectorAll(".cart-badge").forEach(function (badge) {
+        badge.remove();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
+
