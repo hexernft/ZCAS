@@ -2,7 +2,7 @@
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') { res.setHeader('Allow','POST'); return res.status(405).json({ok:false,error:'Use POST.'}); }
-  const url = process.env.GOOGLE_ORDERS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycby1B9iQ3kT_0faLihFlWTsFd23yzg_m-vT0DucLZcEIIy5kQnHb1aqbGLUZTj4PYJVA/exec';
+  const url = process.env.GOOGLE_ORDERS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyKF4_O26qqLHieAYphElHjeRuVWm7Pe3JQXnq7TKb2ShGnjUeQIKMWY7OsmetBSksfiw/exec';
   if (!url || !/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(url)) return res.status(503).json({ok:false,error:'Pre-orders are not open yet. Please try again later.'});
   try {
     const order = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
@@ -15,4 +15,3 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ok:true,orderId:result.orderId});
   } catch { return res.status(502).json({ok:false,error:'We could not confirm your order. Please retry without changing your details; the same order reference will prevent duplicates.'}); }
 };
-
