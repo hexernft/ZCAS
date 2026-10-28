@@ -6,4 +6,4 @@ The receiver in Code.gs creates a Meat Pie Orders tab with Requested date and Da
 
 To update the receiver: replace Code.gs, save, then Deploy > Manage deployments > Edit > Version: New version > Deploy. Keep Execute as: Me and Who has access: Anyone. Preserve the existing /exec URL, or update GOOGLE_ORDERS_SCRIPT_URL in Vercel if using a new deployment. The spreadsheet remains private.
 
-The public page remains at kuje-preorder.html so existing shared links continue working. Its title is now Meat Pie Order. Review opens a modal dialog; a confirmed save opens a full-page success view with Order again. The customer date is displayed with a weekday and full month; the sheet stores ISO date and weekday separately.
+The public page is meat-pie-order.html. The former event URL permanently redirects to it so existing shared links continue working. Its title is now Meat Pie Order. Review opens a modal dialog; a confirmed save opens a full-page success view with Order again. The customer date is displayed with a weekday and full month; the sheet stores ISO date and weekday separately.

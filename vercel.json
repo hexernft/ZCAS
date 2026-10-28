@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/kuje-preorder.html", "destination": "/meat-pie-order.html", "permanent": true }
+  ]
+}
