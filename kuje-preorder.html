@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuje Miracle Crusade · Meatpie Pre-order | ZCAS TastyBites</title>
+<meta name="description" content="Pre-order your meatpies for Kuje Miracle Crusade on 6 November 2026. ₦1,500 each. Pay with OPay or choose to pay later.">
+<link rel="stylesheet" href="event-preorder.css">
+<script src="event-preorder.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="index.html">ZCAS <span>TastyBites</span></a><a class="back" href="index.html">Back to home ↗</a></header>
+<main>
+<section class="intro"><span class="eyebrow">A SPECIAL DAY. A TASTY BITE.</span><h1>Kuje Miracle<br><em>Crusade.</em></h1><p class="lead">Make room for something delicious.<br>Pre-order your meatpies for the event.</p><div class="date"><span class="calendar">NOV<strong>06</strong></span><div><strong>Friday, 6 November 2026</strong><span>Kuje Miracle Crusade</span></div></div><div class="product"><img src="assets/products/meat-pie.svg" alt="Illustration of a golden meatpie" width="900" height="600"><div class="product-caption"><div><span>THE SAVOURY FAVOURITE</span><h2>Meatpie</h2></div><p>₦1,500<small>per pie</small></p></div></div><p class="footnote">Made with love by ZCAS TastyBites.</p></section>
+<section class="order-card" aria-labelledby="order-title"><div class="card-top"><span class="eyebrow">EVENT PRE-ORDER</span><span class="tag">6 NOV</span></div><h2 id="order-title">Save your bite.</h2><p class="muted">A few details, and you’re one step closer.</p>
+<form id="order-form">
+<div class="section-label"><span>01</span> Your details</div>
+<label for="customer-name">Full name</label><input id="customer-name" name="name" autocomplete="name" placeholder="Enter your full name" maxlength="100" required>
+<label for="customer-phone">Phone number</label><input id="customer-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 08012345678" required><small class="hint">So we can contact you about your order.</small>
+<div class="quantity-row"><div><label for="quantity">How many meatpies?</label><small class="hint">₦1,500 each</small></div><div class="stepper"><button type="button" id="minus" aria-label="Decrease quantity">−</button><input id="quantity" name="quantity" type="number" min="1" max="1000" step="1" value="1" required aria-label="Quantity"><button type="button" id="plus" aria-label="Increase quantity">+</button></div></div>
+<fieldset><legend><span class="section-label"><span>02</span> Payment preference</span></legend><div class="payment-options"><label class="payment-option"><input type="radio" name="payment" value="Bank transfer" checked><span><strong>Bank transfer</strong><small>Pay with OPay</small></span></label><label class="payment-option"><input type="radio" name="payment" value="Pay later"><span><strong>Pay later</strong><small>Arrange payment later</small></span></label></div></fieldset>
+<div id="bank-details" class="bank"><div class="bank-top"><strong>OPay</strong><span>Bank transfer</span></div><div class="account-row"><strong>8148124675</strong><button type="button" id="copy-account">Copy</button></div><p>Eucharia Uwandu</p><small>Use your name as the transfer reference. Payment is confirmed after verification.</small></div><p id="later-details" class="later" hidden>You can submit your pre-order now and arrange payment later.</p>
+<div class="total"><span>Your total <small id="quantity-summary">1 meatpie</small></span><strong id="total" aria-live="polite">₦1,500</strong></div>
+<button class="submit" type="submit">Review pre-order <span>→</span></button><p class="privacy">Your name and phone number will be used to manage this pre-order. Your order will be sent to ZCAS TastyBites for this event.</p>
+<p id="status" role="status"></p>
+<section id="review" class="review" hidden aria-labelledby="review-title"><h3 id="review-title">Your pre-order summary</h3><p id="review-text"></p><p id="form-pending">Your order has not been submitted yet.</p><button type="button" id="send-order" class="submit" hidden>Submit pre-order →</button></section>
+</form></section>
+</main><footer><span>ZCAS TastyBites</span><span>A little pastry. A lovely day.</span></footer>
+</body></html>
